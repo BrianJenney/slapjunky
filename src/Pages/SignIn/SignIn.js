@@ -2,91 +2,48 @@ import React from 'react';
 
 const SignIn = () => {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md w-full space-y-8">
-                <div>
-                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                        Sign in to your account
-                    </h2>
-                    <p className="mt-2 text-center text-sm text-gray-600">
-                        Or{' '}
-                        <a
-                            href="#"
-                            className="font-medium text-indigo-600 hover:text-indigo-500"
-                        >
-                            Register
-                        </a>
-                    </p>
-                </div>
-                <form className="mt-8 space-y-6" action="#" method="POST">
-                    <input type="hidden" name="remember" defaultValue="true" />
-                    <div className="rounded-md shadow-sm -space-y-px">
-                        <div>
-                            <label htmlFor="email-address" className="sr-only">
-                                Email address
-                            </label>
-                            <input
-                                id="email-address"
-                                name="email"
-                                type="email"
-                                autoComplete="email"
-                                required
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                placeholder="Email address"
-                            />
+        <div>
+            <div>
+                <section class="text-gray-600 body-font bg-gray-100">
+                    <div class="container xl:px-32 px-5 py-36 mx-auto flex flex-wrap items-center">
+                        <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+                            <h1 class="title-font font-bold lg:text-7xl text-6xl text-purple-600 text-center md:text-left ">
+                                slapjunky
+                            </h1>
+                            <p class="leading-relaxed mt-4 lg:text-3xl text-2xl lg:max-w-xl font-medium  text-black text-center md:text-left ">
+                                get some slap in your life
+                            </p>
                         </div>
-                        <div>
-                            <label htmlFor="password" className="sr-only">
-                                Password
-                            </label>
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                autoComplete="current-password"
-                                required
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                placeholder="Password"
-                            />
+                        <div class="lg:w-2/6 md:w-1/2 bg-white shadow-lg rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+                            <div class="relative mb-4">
+                                <input
+                                    type="text"
+                                    name="full-name"
+                                    placeholder="Email address or phone number"
+                                    class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-lg outline-none  text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                />
+                            </div>
+                            <div class="relative mb-4">
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="Password"
+                                    class="w-full  bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-lg text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                />
+                            </div>
+                            <button class="text-white border-0 py-2 px-8 focus:outline-none font-medium  rounded text-xl bg-purple-600 ">
+                                Log In
+                            </button>
+                            <p class="text-sm text-blue-500 py-5 text-center">
+                                Forgot password?
+                            </p>
+                            <hr className="my-5" />
+                            <button class="text-white  border-0 py-2 px-8 focus:outline-none font-medium  rounded text-xl bg-green-500 ">
+                                Create New Account
+                            </button>
                         </div>
                     </div>
-
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                            <input
-                                id="remember-me"
-                                name="remember-me"
-                                type="checkbox"
-                                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                            />
-                            <label
-                                htmlFor="remember-me"
-                                className="ml-2 block text-sm text-gray-900"
-                            >
-                                Remember me
-                            </label>
-                        </div>
-
-                        <div className="text-sm">
-                            <a
-                                href="#"
-                                className="font-medium text-indigo-600 hover:text-indigo-500"
-                            >
-                                Forgot your password?
-                            </a>
-                        </div>
-                    </div>
-
-                    <div>
-                        <button
-                            type="submit"
-                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            <span className="absolute left-0 inset-y-0 flex items-center pl-3"></span>
-                            Sign in
-                        </button>
-                    </div>
-                </form>
+                </section>
             </div>
         </div>
     );
