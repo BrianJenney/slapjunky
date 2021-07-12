@@ -5,10 +5,11 @@ const SongUpload = ({
     updateFormField,
     artPreview,
     mp3FileName,
+    isUploading,
 }) => {
     return (
-        <div class="flex h-screen bg-gray-200 items-center justify-center  mt-32 mb-32">
-            <div class="grid bg-white rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
+        <div class="flex bg-green-200 items-center justify-center">
+            <div class="mt-16 mb-16 grid bg-white rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
                 <div class="flex justify-center py-4">
                     <div class="flex bg-purple-200 rounded-full md:p-4 p-2 border-2 border-purple-300">
                         <svg
@@ -157,12 +158,19 @@ const SongUpload = ({
                     )}
                 </div>
 
-                <div class="flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5">
+                <div class="flex items-center justify-center md:gap-8 gap-4 pt-5 pb-5">
                     <button
+                        disabled={isUploading}
                         onClick={() => uploadSong()}
                         class="w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2"
                     >
-                        Create
+                        {isUploading && (
+                            <svg
+                                class="animate-spin h-5 w-5 mr-3"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                        )}
+                        {isUploading ? 'Processing' : 'Create'}
                     </button>
                 </div>
             </div>

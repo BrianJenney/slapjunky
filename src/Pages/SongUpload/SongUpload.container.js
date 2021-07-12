@@ -6,17 +6,20 @@ const SongUploadContainer = () => {
     const [form, updateForm] = useState(new FormData());
     const [artPreview, setArtPreview] = useState(null);
     const [mp3FileName, setMp3FileName] = useState(null);
+    const [isUploading, setIsUploading] = useState(false);
 
-    const uploadSong = useCallback(() => {
-        form.set('artistId', 123);
-        apiClient('songs/upload', form)
-            .then((res) => console.log(res))
-            .catch((e) => console.log(e));
+    const uploadSong = useCallback(async () => {
+        setIsUploading(true);
+        form.set('artistId', 123); // TODO: use real id
+        try {
+            await apiClient('songs/upload', form);
+        } catch (e) {
+            setIsUploading(false);
+        }
     }, [form]);
 
     const updateFormField = useCallback(
         (fieldName, val) => {
-            console.log(val);
             if (fieldName === 'songArt') {
                 setArtPreview(URL.createObjectURL(val));
             }
@@ -37,6 +40,7 @@ const SongUploadContainer = () => {
             formData={form}
             updateFormField={updateFormField}
             uploadSong={uploadSong}
+            isUploading={isUploading}
         />
     );
 };

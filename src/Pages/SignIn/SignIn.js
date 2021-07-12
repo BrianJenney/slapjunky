@@ -4,10 +4,10 @@ const SignIn = () => {
     return (
         <div>
             <div>
-                <section class="text-gray-600 body-font bg-gray-100">
+                <section class="text-gray-600 body-font bg-green-200 h-screen">
                     <div class="container xl:px-32 px-5 py-36 mx-auto flex flex-wrap items-center">
                         <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
-                            <h1 class="title-font font-bold lg:text-7xl text-6xl text-purple-600 text-center md:text-left ">
+                            <h1 class="title-font animate-pulse font-bold lg:text-7xl text-6xl text-purple-400 text-center md:text-left ">
                                 slapjunky
                             </h1>
                             <p class="leading-relaxed mt-4 lg:text-3xl text-2xl lg:max-w-xl font-medium  text-black text-center md:text-left ">
