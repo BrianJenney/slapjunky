@@ -22,7 +22,7 @@ const SongUploadContainer = () => {
     const [artPreview, setArtPreview] = useState(null);
     const [mp3FileName, setMp3FileName] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [successMessage, setSuccessMessage] = useState('SUCCESS');
+    const [successMessage, setSuccessMessage] = useState(null);
     const history = useHistory();
 
     const handleFileUpload = useCallback(
