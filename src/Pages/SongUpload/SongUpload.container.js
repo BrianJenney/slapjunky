@@ -11,9 +11,12 @@ const SongUploadContainer = () => {
     const uploadSong = useCallback(async () => {
         setIsUploading(true);
         form.set('artistId', 123); // TODO: use real id
+        form.set('artistName', 'Marcus Made Beats');
         try {
             await apiClient('songs/upload', form);
         } catch (e) {
+            throw e;
+        } finally {
             setIsUploading(false);
         }
     }, [form]);
