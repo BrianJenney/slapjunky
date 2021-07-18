@@ -22,7 +22,7 @@ const SongUploadContainer = () => {
     const [artPreview, setArtPreview] = useState(null);
     const [mp3FileName, setMp3FileName] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [successMessage, setSuccessMessage] = useState(null);
+    const [successMessage, setSuccessMessage] = useState('SUCCESS');
     const history = useHistory();
 
     const handleFileUpload = useCallback(
@@ -43,6 +43,12 @@ const SongUploadContainer = () => {
         [form]
     );
 
+    const resetForm = () => {
+        updateForm(new FormData());
+        setMp3FileName(null);
+        setArtPreview(null);
+    };
+
     const uploadSong = useCallback(async () => {
         setIsLoading(true);
         form.set('artistId', 123); // TODO: use real id
@@ -59,6 +65,7 @@ const SongUploadContainer = () => {
             await apiClient('songs/upload', form);
             setIsLoading(false);
             setSuccessMessage('Success');
+            resetForm();
         } catch (e) {
             throw e;
         } finally {
@@ -84,10 +91,29 @@ const SongUploadContainer = () => {
     return (
         <>
             {successMessage ? (
-                <div className="flex bg-gray-900 items-center justify-center">
+                <div className="h-screen flex flex-col d bg-gray-900 items-center justify-center ">
                     <h1 className="text-white font-bold md:text-2xl text-xl">
                         Thanks for uploading your music!
                     </h1>
+                    <div className="flex items-center justify-center md:gap-8 gap-4 pt-5 pb-5">
+                        <button
+                            onClick={() => {
+                                resetForm();
+                                setSuccessMessage(null);
+                            }}
+                            className="w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2"
+                        >
+                            Upload More Songs
+                        </button>
+                        <button
+                            onClick={() => {
+                                history.push('/music');
+                            }}
+                            className="w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2"
+                        >
+                            Go To Music Page
+                        </button>
+                    </div>
                 </div>
             ) : (
                 <SongUpload
