@@ -11,11 +11,11 @@ const formatUrl = (url) => {
 
 const Music = ({ songs = [] }) => (
     <div className="h-screen bg-gray-900 overflow-hidden flex flex-col items-center content-center ">
-        <div className="mt-32 divide-y-2 divide-purple-300 divide-solid">
+        <div className="mt-16 mb-16 overflow-scroll divide-y-2 divide-purple-300 divide-solid">
             {songs.map((song, i) => (
                 <div key={`${i}_${song.url}`} className="pb-4 py-4">
                     <p className="text-white uppercase">{song.artistName}</p>
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-4 justify-between">
                         <img
                             height="100px"
                             width="100px"
