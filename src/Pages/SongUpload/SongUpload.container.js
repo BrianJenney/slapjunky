@@ -9,7 +9,6 @@ const REGION = 'us-east-1';
 const ACCESS_KEY = process.env.REACT_APP_AWS_ACCESS;
 const SECRET_ACCESS_KEY = process.env.REACT_APP_AWS_SECRET;
 
-console.log(process.env);
 const config = {
     bucketName: S3_BUCKET,
     region: REGION,
@@ -21,7 +20,7 @@ const SongUploadContainer = () => {
     const [form, updateForm] = useState(new FormData());
     const [artPreview, setArtPreview] = useState(null);
     const [mp3FileName, setMp3FileName] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [successMessage, setSuccessMessage] = useState(null);
     const history = useHistory();
 
@@ -76,11 +75,11 @@ const SongUploadContainer = () => {
     const updateFormField = useCallback(
         (fieldName, val) => {
             if (fieldName === 'songArt') {
-                setArtPreview(URL.createObjectURL(val));
+                setArtPreview(val ? URL.createObjectURL(val) : null);
             }
 
             if (fieldName === 'song') {
-                setMp3FileName(val.name);
+                setMp3FileName(val?.name ?? null);
             }
             form.set(fieldName, val);
             updateForm(form);

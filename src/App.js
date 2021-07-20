@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { SignIn } from './Pages/SignIn';
 import { SongUpload } from './Pages/SongUpload';
 import { Music } from './Pages/Music';
+import { FooterNav } from './components/FooterNav';
 
 const App = () => {
     return (
@@ -20,6 +21,7 @@ const App = () => {
                     </Route>
                 </Switch>
             </div>
+            <FooterNav />
         </Router>
     );
 };

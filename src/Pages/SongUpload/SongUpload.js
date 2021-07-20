@@ -8,12 +8,12 @@ const SongUpload = ({
     isLoading,
 }) => {
     return (
-        <div className="flex h-screen bg-gray-900 items-center justify-center">
+        <div className="flex bg-gray-900 items-center justify-center">
             <div className="mt-16 mb-16 grid bg-gray-700 rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
                 <div className="flex justify-center py-4">
                     <div className="flex">
                         <h1 className="text-white font-bold md:text-2xl text-xl">
-                            Upload Your Music
+                            Upload A Song
                         </h1>
                     </div>
                 </div>
@@ -91,7 +91,25 @@ const SongUpload = ({
                 )}
 
                 {artPreview && (
-                    <section className="hero container max-w-screen-lg mx-auto pb-10">
+                    <section className="hero container max-w-screen-lg mx-auto pb-10 mt-8">
+                        <span
+                            onClick={() =>
+                                updateFormField('songArt', null, false)
+                            }
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-5 w-5 mx-auto"
+                                viewBox="0 0 20 20"
+                                fill="#fff"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                        </span>
                         <img
                             className="mx-auto"
                             alt="song art"
@@ -145,12 +163,30 @@ const SongUpload = ({
                 )}
                 {mp3FileName && (
                     <label className="uppercase md:text-sm text-xs text-white text-light font-semibold mb-1 mx-auto">
+                        <span onClick={() => updateFormField('song', {}, true)}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-5 w-5 mx-auto"
+                                viewBox="0 0 20 20"
+                                fill="#fff"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                        </span>
                         {mp3FileName}
                     </label>
                 )}
 
                 {isLoading ? (
                     <label className="uppercase md:text-sm text-xs text-white text-light font-semibold mb-1 mx-auto">
+                        <svg
+                            class="animate-spin h-5 w-5 mr-3"
+                            viewBox="0 0 24 24"
+                        ></svg>{' '}
                         LOADING...
                     </label>
                 ) : (
