@@ -8,19 +8,17 @@ import { FooterNav } from './components/FooterNav';
 const App = () => {
     return (
         <Router>
-            <div>
-                <Switch>
-                    <Route path="/music">
-                        <Music />
-                    </Route>
-                    <Route path="/artist/upload">
-                        <SongUpload />
-                    </Route>
-                    <Route path="/">
-                        <SignIn />
-                    </Route>
-                </Switch>
-            </div>
+            <Switch>
+                <Route path="/music">
+                    <Music />
+                </Route>
+                <Route path="/artist/upload">
+                    <SongUpload />
+                </Route>
+                <Route path="/">
+                    <SignIn />
+                </Route>
+            </Switch>
             <FooterNav />
         </Router>
     );

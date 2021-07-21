@@ -9,9 +9,10 @@ const formatUrl = (url) => {
     return segements.join('/');
 };
 
-const Music = ({ songs = [] }) => (
+const Music = ({ songs = [], isLoading }) => (
     <div className="h-screen bg-gray-900 overflow-hidden flex flex-col items-center content-center ">
-        <div className="mt-16 mb-16 overflow-scroll divide-y-2 divide-purple-300 divide-solid">
+        {isLoading && <p>LOADING</p>}
+        <div className="mt-16 mb-16 overflow-scroll divide-y-2 divide-purple-300 divide-solid no-scrollbar">
             {songs.map((song, i) => (
                 <div key={`${i}_${song.url}`} className="pb-4 py-4">
                     <p className="text-white uppercase">{song.artistName}</p>

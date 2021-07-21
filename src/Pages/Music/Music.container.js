@@ -4,9 +4,11 @@ import Music from './Music';
 
 const MusicContainer = () => {
     const [songs, setSongs] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchSongs = async () => {
+            setIsLoading(true);
             try {
                 const { data } = await apiClient('/songs/music', {
                     method: 'artist',
@@ -16,11 +18,13 @@ const MusicContainer = () => {
                 setSongs(data?.data);
             } catch (ex) {
                 throw ex;
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchSongs();
     }, []);
-    return <Music songs={songs} />;
+    return <Music isLoading={isLoading} songs={songs} />;
 };
 
 export default MusicContainer;

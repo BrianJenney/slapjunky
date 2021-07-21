@@ -8,8 +8,8 @@ const SongUpload = ({
     isLoading,
 }) => {
     return (
-        <div className="flex bg-gray-900 items-center justify-center">
-            <div className="mt-16 mb-16 grid bg-gray-700 rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
+        <div className="flex bg-gray-900 items-center justify-center h-screen">
+            <div className="mb-16 grid bg-gray-700 rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2 h-5/6 overflow-scroll no-scrollbar">
                 <div className="flex justify-center py-4">
                     <div className="flex">
                         <h1 className="text-white font-bold md:text-2xl text-xl">
