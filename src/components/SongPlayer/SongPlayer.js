@@ -1,26 +1,29 @@
 import React, { useContext } from 'react';
-import { formatUrl } from '../../../utils/helpers';
-import { SongContext } from '../../../contexts/SongContext';
+import ReactAudioPlayer from 'react-audio-player';
+import { formatUrl } from '../../utils/helpers';
+import { SongContext } from '../../contexts/SongContext';
 
-const Song = ({ likeSong, song }) => {
-    const { setCurrentSong } = useContext(SongContext);
+const SongPlayer = () => {
+    const { song, likeSong } = useContext(SongContext);
+    const isLiked = (song?.likes ?? []).includes('123');
 
-    const isLiked = song.likes.includes('123');
-
+    if (!song) return <></>;
     return (
-        <>
+        <div className="w-7/12 mx-auto bg-gray-800 rounded-lg px-8 py-4">
             <p className="text-white uppercase">{song.artistName}</p>
-            <div
-                onClick={() => setCurrentSong(song)}
-                className="flex items-center space-x-4 justify-between"
-            >
+            <div className="flex items-center space-x-4 justify-between">
                 <img
-                    height="100px"
-                    width="100px"
+                    className="h-20"
                     alt="song art"
                     src={formatUrl(song?.songCoverUrl)}
                 />
                 <p className="text-white uppercase">{song.title}</p>
+                <ReactAudioPlayer
+                    autoPlay={false}
+                    controls
+                    src={formatUrl(song.url)}
+                    preload="auto"
+                />
             </div>
             <div className="flex justify-end">
                 <svg
@@ -45,8 +48,8 @@ const Song = ({ likeSong, song }) => {
                     />
                 </svg>
             </div>
-        </>
+        </div>
     );
 };
 
-export default Song;
+export default SongPlayer;

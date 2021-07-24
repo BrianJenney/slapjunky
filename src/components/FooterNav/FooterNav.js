@@ -1,12 +1,17 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { SongPlayer } from '../SongPlayer';
+import { useLocation } from 'react-router-dom';
 
 const FooterNav = () => {
+    const location = useLocation();
     const history = useHistory();
 
+    const isHomePage = ['/'].includes(location?.pathname);
     return (
-        <div className="flex w-full justify-center">
-            <nav className="fixed bottom-2 w-11/12 border bg-white flex overflow-x-auto py-4 rounded-lg">
+        <div className="flex-col w-full justify-center fixed bottom-2">
+            {!isHomePage && <SongPlayer />}
+            <nav className="w-11/12 border bg-white flex overflow-x-auto py-4 rounded-lg mx-auto">
                 <p
                     onClick={() => history.push('/')}
                     className="flex flex-col flex-grow items-center justify-center
