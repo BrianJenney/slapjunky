@@ -6,6 +6,26 @@ const MusicContainer = () => {
     const [songs, setSongs] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    const likeSong = ({ userId, songId, removeLike }) => {
+        apiClient('/songs/like', {
+            userId,
+            songId,
+            removeLike,
+        })
+            .then((songData) => {
+                const newSong = songData?.data?.song;
+
+                setSongs(
+                    songs.map((song) =>
+                        song._id === newSong._id ? newSong : song
+                    )
+                );
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    };
+
     useEffect(() => {
         const fetchSongs = async () => {
             setIsLoading(true);
@@ -24,7 +44,8 @@ const MusicContainer = () => {
         };
         fetchSongs();
     }, []);
-    return <Music isLoading={isLoading} songs={songs} />;
+
+    return <Music likeSong={likeSong} isLoading={isLoading} songs={songs} />;
 };
 
 export default MusicContainer;
