@@ -1,11 +1,30 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { formatUrl } from '../../utils/helpers';
 import { SongContext } from '../../contexts/SongContext';
+import { apiClient } from '../../utils/apiClient';
 
 const SongPlayer = () => {
+    const [playing, setIsPlaying] = useState(false);
     const { song, likeSong } = useContext(SongContext);
     const isLiked = (song?.likes ?? []).includes('123');
+
+    useEffect(() => {
+        let timeoutId;
+        const addToPlays = () => {
+            apiClient('songs/plays', {
+                userId: '123',
+                songId: song._id,
+            });
+        };
+
+        if (playing) {
+            timeoutId = setTimeout(addToPlays, 30000);
+        }
+        return () => {
+            clearTimeout(timeoutId);
+        };
+    }, [playing, song?._id]);
 
     if (!song) return <></>;
     return (
@@ -20,6 +39,7 @@ const SongPlayer = () => {
                 <p className="text-white uppercase">{song.title}</p>
                 <ReactAudioPlayer
                     autoPlay={false}
+                    onPlay={() => setIsPlaying(true)}
                     controls
                     src={formatUrl(song.url)}
                     preload="auto"
