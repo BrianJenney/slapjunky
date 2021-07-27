@@ -8,8 +8,7 @@ const Song = ({ likeSong, song }) => {
     const isLiked = song.likes.includes('123');
 
     return (
-        <>
-            <p className="text-white uppercase">{song.artistName}</p>
+        <div className="flex justify-between items-center">
             <div
                 onClick={() => setCurrentSong(song)}
                 className="flex items-center space-x-4 justify-between"
@@ -20,7 +19,10 @@ const Song = ({ likeSong, song }) => {
                     alt="song art"
                     src={formatUrl(song?.songCoverUrl)}
                 />
-                <p className="text-white uppercase">{song.title}</p>
+            </div>
+            <div>
+                <p className="text-white uppercase">{song.artistName}</p>
+                <p className="text-white">{song.title}</p>
             </div>
             <div className="flex justify-end">
                 <svg
@@ -45,7 +47,7 @@ const Song = ({ likeSong, song }) => {
                     />
                 </svg>
             </div>
-        </>
+        </div>
     );
 };
 

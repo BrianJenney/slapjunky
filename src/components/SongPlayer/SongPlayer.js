@@ -6,7 +6,7 @@ import { apiClient } from '../../utils/apiClient';
 
 const SongPlayer = () => {
     const [playing, setIsPlaying] = useState(false);
-    const { song, likeSong } = useContext(SongContext);
+    const { song, setCurrentSong, likeSong } = useContext(SongContext);
     const isLiked = (song?.likes ?? []).includes('123');
 
     useEffect(() => {
@@ -27,16 +27,27 @@ const SongPlayer = () => {
     }, [playing, song?._id]);
 
     if (!song) return <></>;
+
     return (
-        <div className="w-7/12 mx-auto bg-gray-800 rounded-lg px-8 py-4">
-            <p className="text-white uppercase">{song.artistName}</p>
+        <div className="w-9/12 mx-auto bg-gray-800 rounded-lg px-8 py-4">
+            <div className="flex justify-end">
+                <p
+                    onClick={() => setCurrentSong(null)}
+                    className="text-white uppercase cursor-pointer"
+                >
+                    X
+                </p>
+            </div>
             <div className="flex items-center space-x-4 justify-between">
                 <img
                     className="h-20"
                     alt="song art"
                     src={formatUrl(song?.songCoverUrl)}
                 />
-                <p className="text-white uppercase">{song.title}</p>
+                <div>
+                    <p className="text-white uppercase">{song.artistName}</p>
+                    <p className="text-white">{song.title}</p>
+                </div>
                 <ReactAudioPlayer
                     autoPlay={false}
                     onPlay={() => setIsPlaying(true)}
@@ -46,6 +57,23 @@ const SongPlayer = () => {
                 />
             </div>
             <div className="flex justify-end">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="#ffff"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                    />
+                </svg>
+                <p className="text-white mr-10 ml-5">
+                    {(song?.plays || []).length}
+                </p>
                 <svg
                     onClick={() =>
                         likeSong({
