@@ -1,6 +1,9 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 const SignIn = () => {
+    const history = useHistory();
+
     return (
         <div>
             <div>
@@ -35,7 +38,10 @@ const SignIn = () => {
                                 Forgot password?
                             </p>
                             <hr className="my-5" />
-                            <button className="text-white  border-0 py-2 px-8 focus:outline-none font-medium  rounded text-xl bg-green-500 ">
+                            <button
+                                onClick={() => history.push('/register')}
+                                className="text-white  border-0 py-2 px-8 focus:outline-none font-medium  rounded text-xl bg-green-500 "
+                            >
                                 Create New Account
                             </button>
                         </div>

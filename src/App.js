@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { SignIn } from './Pages/SignIn';
 import { SongUpload } from './Pages/SongUpload';
 import { Music } from './Pages/Music';
+import { Register } from './Pages/Register';
 import { FooterNav } from './components/FooterNav';
 import { SongContextProvider } from './contexts/SongContext';
 const App = () => {
@@ -15,6 +16,9 @@ const App = () => {
                     </Route>
                     <Route path="/artist/upload">
                         <SongUpload />
+                    </Route>
+                    <Route path="/register">
+                        <Register />
                     </Route>
                     <Route path="/">
                         <SignIn />

@@ -11,6 +11,7 @@ const SongPlayer = () => {
 
     useEffect(() => {
         let timeoutId;
+        if (!song) return;
         const addToPlays = () => {
             apiClient('songs/plays', {
                 userId: '123',
@@ -24,7 +25,7 @@ const SongPlayer = () => {
         return () => {
             clearTimeout(timeoutId);
         };
-    }, [playing, song?._id]);
+    }, [playing, song, song?._id]);
 
     if (!song) return <></>;
 
