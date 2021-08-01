@@ -88,10 +88,10 @@ const SongUploadContainer = () => {
     );
 
     return (
-        <>
+        <div className="h-screen bg-gray-900 items-center justify-center ">
             {successMessage ? (
-                <div className="h-screen flex flex-col d bg-gray-900 items-center justify-center ">
-                    <h1 className="text-white font-bold md:text-2xl text-xl">
+                <div className="flex flex-col justify-center items-center">
+                    <h1 className="text-white font-bold md:text-2xl text-xl mt-20">
                         Thanks for uploading your music!
                     </h1>
                     <div className="flex items-center justify-center md:gap-8 gap-4 pt-5 pb-5">
@@ -100,7 +100,7 @@ const SongUploadContainer = () => {
                                 resetForm();
                                 setSuccessMessage(null);
                             }}
-                            className="w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2"
+                            className="w-auto bg-green-500 rounded-lg shadow-xl font-medium text-white px-4 py-2"
                         >
                             Upload More Songs
                         </button>
@@ -108,7 +108,7 @@ const SongUploadContainer = () => {
                             onClick={() => {
                                 history.push('/music');
                             }}
-                            className="w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2"
+                            className="w-auto bg-green-500 rounded-lg shadow-xl font-medium text-white px-4 py-2"
                         >
                             Go To Music Page
                         </button>
@@ -125,7 +125,7 @@ const SongUploadContainer = () => {
                     isLoading={isLoading}
                 />
             )}
-        </>
+        </div>
     );
 };
 
