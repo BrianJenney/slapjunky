@@ -9,7 +9,7 @@ const SongPlayer = () => {
     const [playing, setIsPlaying] = useState(false);
     const { song, setCurrentSong, likeSong } = useContext(SongContext);
     const { user } = useContext(UserContext);
-    const isLiked = (song?.likes ?? []).includes(user._id);
+    const isLiked = (song?.likes ?? []).includes(user?._id);
 
     useEffect(() => {
         let timeoutId;
