@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-const SignIn = () => {
+const SignIn = ({ signIn, signInError, setSignInError, updateUserInfo }) => {
     const history = useHistory();
 
     return (
@@ -17,6 +17,9 @@ const SignIn = () => {
                         <div className="lg:w-2/6 md:w-1/2 bg-white shadow-lg rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
                             <div className="relative mb-4">
                                 <input
+                                    onChange={(e) =>
+                                        updateUserInfo('email', e.target.value)
+                                    }
                                     type="text"
                                     name="full-name"
                                     placeholder="Email address"
@@ -25,15 +28,29 @@ const SignIn = () => {
                             </div>
                             <div className="relative mb-4">
                                 <input
-                                    type="email"
-                                    name="email"
+                                    onChange={(e) =>
+                                        updateUserInfo(
+                                            'password',
+                                            e.target.value
+                                        )
+                                    }
+                                    type="password"
+                                    name="password"
                                     placeholder="Password"
                                     className="w-full  bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-lg text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                 />
                             </div>
-                            <button className="text-white border-0 py-2 px-8 focus:outline-none font-medium  rounded text-xl bg-purple-600 ">
+                            <button
+                                onClick={() => signIn()}
+                                className="text-white border-0 py-2 px-8 focus:outline-none font-medium  rounded text-xl bg-purple-600 "
+                            >
                                 Log In
                             </button>
+                            {signInError && (
+                                <p className="text-sm text-red-500 py-5 text-center">
+                                    {signInError}
+                                </p>
+                            )}
                             <p className="text-sm text-blue-500 py-5 text-center">
                                 Forgot password?
                             </p>

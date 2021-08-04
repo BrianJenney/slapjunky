@@ -4,7 +4,7 @@ const getBaseUrl = () => {
     const isProd = process.env.NODE_ENV === 'production';
     return isProd
         ? 'https://4mxwytmbdh.execute-api.us-east-1.amazonaws.com/dev/api'
-        : 'http://localhost:5000/api';
+        : 'http://localhost:5000/api/';
 };
 
 export const apiClient = (path, data, overrides = {}) => {

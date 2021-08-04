@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { formatUrl } from '../../../utils/helpers';
 import { SongContext } from '../../../contexts/SongContext';
 
-const Song = ({ likeSong, song }) => {
+const Song = ({ likeSong, song, user }) => {
     const { setCurrentSong } = useContext(SongContext);
 
-    const isLiked = song.likes.includes('123');
+    const isLiked = song.likes.includes(user?._id);
 
     return (
         <div className="flex justify-between items-center">
@@ -14,6 +14,11 @@ const Song = ({ likeSong, song }) => {
                 className="flex items-center space-x-4 justify-between"
             >
                 <img
+                    style={{
+                        width: '100px',
+                        height: '100px',
+                        objectFit: 'cover',
+                    }}
                     height="100px"
                     width="100px"
                     alt="song art"
@@ -28,7 +33,7 @@ const Song = ({ likeSong, song }) => {
                 <svg
                     onClick={() =>
                         likeSong({
-                            userId: '123',
+                            userId: user._id,
                             songId: song._id,
                             removeLike: isLiked,
                         })

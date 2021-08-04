@@ -7,7 +7,6 @@ const FooterNav = () => {
     const location = useLocation();
     const history = useHistory();
 
-    console.log(location.pathname);
     const isHomePage = ['/', '/artist/upload'].includes(location?.pathname);
     return (
         <div className="flex-col w-full justify-center fixed bottom-2">

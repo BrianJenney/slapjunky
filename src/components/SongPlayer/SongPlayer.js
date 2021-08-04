@@ -2,19 +2,21 @@ import React, { useContext, useEffect, useState } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { formatUrl } from '../../utils/helpers';
 import { SongContext } from '../../contexts/SongContext';
+import { UserContext } from '../../contexts/UserContext';
 import { apiClient } from '../../utils/apiClient';
 
 const SongPlayer = () => {
     const [playing, setIsPlaying] = useState(false);
     const { song, setCurrentSong, likeSong } = useContext(SongContext);
-    const isLiked = (song?.likes ?? []).includes('123');
+    const { user } = useContext(UserContext);
+    const isLiked = (song?.likes ?? []).includes(user._id);
 
     useEffect(() => {
         let timeoutId;
         if (!song) return;
         const addToPlays = () => {
             apiClient('songs/plays', {
-                userId: '123',
+                userId: user._id,
                 songId: song._id,
             });
         };
@@ -25,7 +27,7 @@ const SongPlayer = () => {
         return () => {
             clearTimeout(timeoutId);
         };
-    }, [playing, song, song?._id]);
+    }, [playing, song, song?._id, user?._id]);
 
     if (!song) return <></>;
 
@@ -78,7 +80,7 @@ const SongPlayer = () => {
                 <svg
                     onClick={() =>
                         likeSong({
-                            userId: '123',
+                            userId: user?._id,
                             songId: song._id,
                             removeLike: isLiked,
                         })

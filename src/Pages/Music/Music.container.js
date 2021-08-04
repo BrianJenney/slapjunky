@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { apiClient } from '../../utils/apiClient';
 import Music from './Music';
 
-const MusicContainer = () => {
+const MusicContainer = ({ user }) => {
     const [songs, setSongs] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -30,9 +30,9 @@ const MusicContainer = () => {
         const fetchSongs = async () => {
             setIsLoading(true);
             try {
-                const { data } = await apiClient('/songs/music', {
+                const { data } = await apiClient('songs/music', {
                     method: 'artist',
-                    userId: '123',
+                    userId: user?._id,
                 });
 
                 setSongs(data?.data);
@@ -43,9 +43,16 @@ const MusicContainer = () => {
             }
         };
         fetchSongs();
-    }, []);
+    }, [user?._id]);
 
-    return <Music likeSong={likeSong} isLoading={isLoading} songs={songs} />;
+    return (
+        <Music
+            user={user}
+            likeSong={likeSong}
+            isLoading={isLoading}
+            songs={songs}
+        />
+    );
 };
 
 export default MusicContainer;

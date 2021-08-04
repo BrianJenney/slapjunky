@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { apiClient } from '../../utils/apiClient';
 import Register from './Register';
+import { UserContext } from '../../contexts/UserContext';
 
 const RegisterContainer = () => {
     const [formType, setFormType] = useState('listener');
     const [user, setUser] = useState({ userType: 'user' });
     const [imgPreview, setImgPreview] = useState(null);
+    const { storeUser } = useContext(UserContext);
+
+    const history = useHistory();
 
     const updateUser = (propName, val) => {
         if (propName === 'avatar') {
@@ -29,7 +34,9 @@ const RegisterContainer = () => {
                 ...user,
                 socialMedia,
             });
-            console.log(userData);
+            console.log(userData?.data?.user);
+            storeUser(userData?.data?.user);
+            history.push('/music');
         } catch (e) {
             console.error(e);
         }

@@ -1,32 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { SignIn } from './Pages/SignIn';
-import { SongUpload } from './Pages/SongUpload';
-import { Music } from './Pages/Music';
-import { Register } from './Pages/Register';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { FooterNav } from './components/FooterNav';
 import { SongContextProvider } from './contexts/SongContext';
+import { UserContextProvider } from './contexts/UserContext';
+import Routes from './routes';
 const App = () => {
     return (
-        <SongContextProvider>
-            <Router>
-                <Switch>
-                    <Route path="/music">
-                        <Music />
-                    </Route>
-                    <Route path="/artist/upload">
-                        <SongUpload />
-                    </Route>
-                    <Route path="/register">
-                        <Register />
-                    </Route>
-                    <Route path="/">
-                        <SignIn />
-                    </Route>
-                </Switch>
-                <FooterNav />
-            </Router>
-        </SongContextProvider>
+        <UserContextProvider>
+            <SongContextProvider>
+                <Router>
+                    <Routes />
+                    <FooterNav />
+                </Router>
+            </SongContextProvider>
+        </UserContextProvider>
     );
 };
 

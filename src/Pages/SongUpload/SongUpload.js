@@ -10,7 +10,7 @@ const SongUpload = ({
 }) => {
     return (
         <div className="bg-grey-light min-h-screen py-6">
-            <div className="container w-7/12 mx-auto flex-1 flex flex-col items-center justify-center px-2">
+            <div className="container lg:w-7/12 md:w-10/12 mx-auto flex-1 flex flex-col items-center justify-center px-2">
                 <div className="text-gray-700 bg-white px-6 py-8 rounded shadow-md text-black w-full mb-10 mt-5">
                     <h1 className="mb-2 text-3xl text-center">Submit Music</h1>
 
