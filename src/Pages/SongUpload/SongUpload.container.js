@@ -106,7 +106,7 @@ const SongUploadContainer = () => {
                         </button>
                         <button
                             onClick={() => {
-                                history.push('/music');
+                                history.push('/discover');
                             }}
                             className="w-auto bg-green-500 rounded-lg shadow-xl font-medium text-white px-4 py-2"
                         >

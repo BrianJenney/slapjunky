@@ -30,13 +30,13 @@ const RegisterContainer = () => {
 
     const registerUser = async (socialMedia = []) => {
         try {
-            const userData = await apiClient('/user/create', {
+            const userData = await apiClient('user/create', {
                 ...user,
                 socialMedia,
             });
             console.log(userData?.data?.user);
             storeUser(userData?.data?.user);
-            history.push('/music');
+            history.push('/discover');
         } catch (e) {
             console.error(e);
         }

@@ -17,10 +17,10 @@ const SignInContainer = () => {
     const signIn = async () => {
         setSignInError(false);
         try {
-            const userData = await apiClient('/user/signin', userInfo);
+            const userData = await apiClient('user/signin', userInfo);
             if (userData?.data?.user) {
                 storeUser(userData?.data?.user);
-                history.push('/music');
+                history.push('/discover');
             }
         } catch (e) {
             setSignInError(e?.message);

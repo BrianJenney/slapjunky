@@ -8,7 +8,7 @@ const FileUpload = ({
     uploadText = 'Upload an Image',
 }) =>
     imgPreview ? (
-        <div class="w-full items-center justify-center bg-grey-lighter py-3">
+        <div className="w-full items-center justify-center bg-grey-lighter py-3">
             <button
                 onClick={() => removeImg()}
                 className="bg-green-400 text-white py-2 px-4 rounded inline-flex items-center"
@@ -41,10 +41,10 @@ const FileUpload = ({
             )}
         </div>
     ) : (
-        <div class="flex w-full items-center justify-center bg-grey-lighter py-3">
-            <label class="w-full flex flex-col items-center px-4 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer">
+        <div className="flex w-full items-center justify-center bg-grey-lighter py-3">
+            <label className="w-full flex flex-col items-center px-4 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer">
                 <svg
-                    class="w-8 h-8"
+                    className="w-8 h-8"
                     fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
