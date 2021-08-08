@@ -3,11 +3,25 @@ import { useHistory } from 'react-router-dom';
 
 const Search = ({ setQuery, searchResults }) => {
     const history = useHistory();
-    const boxClassName =
-        'box-content h-32 w-32 p-4 flex justify-center items-center cursor-pointer rounded-lg bg-gray-100';
+
+    const genres = [
+        {
+            path: 'rap',
+            name: 'rap',
+        },
+        {
+            path: 'trap',
+            name: 'trap',
+        },
+        {
+            path: 'randb',
+            name: 'R & B',
+        },
+    ];
+
     return (
-        <div className="bg-gray-900 overflow-hidden flex flex-col items-center content-center h-screen relative">
-            <div className="w-8/12 relative text-gray-600 focus-within:text-gray-400 mt-5">
+        <div className="bg-gray-900 h-screen relative">
+            <div className="w-8/12 relative text-gray-600 focus-within:text-gray-400 py-5 mx-auto">
                 <span className="absolute inset-y-0 left-0 flex items-center pl-2">
                     <button
                         type="submit"
@@ -35,7 +49,7 @@ const Search = ({ setQuery, searchResults }) => {
                     autocomplete="off"
                 />
             </div>
-            <div className="w-8/12 bg-gray-900 py-100 mt-20">
+            <div className="w-full bg-gray-900 center mt-20">
                 {searchResults.map((res) => {
                     return (
                         <div className="flex flex-row space-x-4 justify-between items-center hover:bg-gray-700 cursor-pointer py-2 px-2">
@@ -58,27 +72,29 @@ const Search = ({ setQuery, searchResults }) => {
             </div>
             {!searchResults.length && (
                 <div>
-                    <p className="text-2xl uppercase text-white text-center">
+                    <p className="text-2xl uppercase text-white text-left text-center">
                         Explore by Genre
                     </p>
-                    <div className="flex flex-row space-x-12 mt-10">
-                        <div
-                            onClick={() => history.push('/music?genre=rap')}
-                            className={boxClassName}
-                        >
-                            <p className="text-green-700">Rap</p>
-                        </div>
-                        <div
-                            onClick={() => history.push('/music?genre=trap')}
-                            className={boxClassName}
-                        >
-                            <p className="text-green-700">Trap</p>
-                        </div>
-                        <div
-                            onClick={() => history.push('/music?genre=randb')}
-                            className={boxClassName}
-                        >
-                            <p className="text-green-700">R & B</p>
+
+                    <div class="flex flex-col m-auto p-auto">
+                        <div class="flex overflow-x-scroll pb-10 hide-scroll-bar no-scrollbar mt-10">
+                            <div class="flex flex-nowrap m-auto">
+                                {genres.map(({ name, path }) => (
+                                    <div
+                                        key={path}
+                                        onClick={() =>
+                                            history.push(`/music?genre=${path}`)
+                                        }
+                                        className="inline-block px-3 cursor-pointer"
+                                    >
+                                        <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out flex items-center justify-center">
+                                            <h1 className="text-green-700 capitalize text-4xl">
+                                                {name}
+                                            </h1>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
