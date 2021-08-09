@@ -3,6 +3,7 @@ import { apiClient } from '../../utils/apiClient';
 import SongUpload from './SongUpload';
 import { uploadFile } from 'react-s3';
 import { useHistory } from 'react-router-dom';
+import { imageUpload } from '../../utils/helpers';
 
 const S3_BUCKET = 'slapbucket';
 const REGION = 'us-east-1';
@@ -16,7 +17,7 @@ const config = {
     secretAccessKey: SECRET_ACCESS_KEY,
 };
 
-const SongUploadContainer = () => {
+const SongUploadContainer = ({ user }) => {
     const [form, updateForm] = useState(new FormData());
     const [artPreview, setArtPreview] = useState(null);
     const [mp3FileName, setMp3FileName] = useState(null);
@@ -24,15 +25,21 @@ const SongUploadContainer = () => {
     const [successMessage, setSuccessMessage] = useState(null);
     const history = useHistory();
 
-    const handleFileUpload = useCallback(
-        async (file, isMusic) => {
+    const handleImageUpload = useCallback(
+        async (file) => {
+            const data = await imageUpload(file);
+            form.set('artUrl', data.url);
+            updateForm(form);
+        },
+        [form]
+    );
+
+    const handleMusicUpload = useCallback(
+        async (file) => {
             return uploadFile(file, config)
                 .then((data) => {
-                    if (isMusic) {
-                        form.set('songUrl', data.location);
-                    } else {
-                        form.set('artUrl', data.location);
-                    }
+                    form.set('songUrl', data.location);
+
                     updateForm(form);
                 })
                 .catch((err) => {
@@ -50,12 +57,12 @@ const SongUploadContainer = () => {
 
     const uploadSong = useCallback(async () => {
         setIsLoading(true);
-        form.set('artistId', 123); // TODO: use real id
-        form.set('artistName', 'Marcus Made Beats');
+        form.set('artistId', user?._id);
+        form.set('artistName', user?.artistName ?? user?.firstName);
 
         //cannot handle this on backend currently with lambda and 10mb hard limit on body payload
-        await handleFileUpload(form.get('songArt'), false);
-        await handleFileUpload(form.get('song'), true);
+        await handleImageUpload(form.get('songArt'));
+        await handleMusicUpload(form.get('song'));
 
         //remove from form
         form.set('songArt', undefined);
@@ -70,7 +77,7 @@ const SongUploadContainer = () => {
         } finally {
             setIsLoading(false);
         }
-    }, [form, handleFileUpload]);
+    }, [form, handleMusicUpload, handleImageUpload, user]);
 
     const updateFormField = useCallback(
         (fieldName, val) => {
@@ -119,7 +126,7 @@ const SongUploadContainer = () => {
                     artPreview={artPreview}
                     mp3FileName={mp3FileName}
                     formData={form}
-                    handleFileUpload={handleFileUpload}
+                    handleMusicUpload={handleMusicUpload}
                     updateFormField={updateFormField}
                     uploadSong={uploadSong}
                     isLoading={isLoading}

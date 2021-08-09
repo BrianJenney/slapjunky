@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { SongPlayer } from '../SongPlayer';
 import { useLocation } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext';
 
 const FooterNav = () => {
     const location = useLocation();
     const history = useHistory();
+    const { user } = useContext(UserContext);
 
     const isHomePage = ['/', '/artist/upload'].includes(location?.pathname);
+
+    const isArtist = user?.userType === 'artist';
+
     return (
         <div className="flex-col w-full justify-center fixed bottom-2">
             {!isHomePage && <SongPlayer />}
@@ -58,30 +63,32 @@ const FooterNav = () => {
                     </svg>
                 </p>
 
-                <p
-                    onClick={() => history.push('/artist/upload')}
-                    className="flex flex-col flex-grow items-center justify-center
-		overflow-hidden whitespace-no-wrap text-sm transition-colors duration-100
-		ease-in-out focus:text-orange-500 cursor-pointer"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
+                {isArtist && (
+                    <p
+                        onClick={() => history.push('/artist/upload')}
+                        className="flex flex-col flex-grow items-center justify-center
+            overflow-hidden whitespace-no-wrap text-sm transition-colors duration-100
+            ease-in-out focus:text-orange-500 cursor-pointer"
                     >
-                        <path d="M13 7H7v6h6V7z" />
-                        <path
-                            fillRule="evenodd"
-                            d="M7 2a1 1 0 012 0v1h2V2a1 1 0 112 0v1h2a2 2 0 012 2v2h1a1 1 0 110 2h-1v2h1a1 1 0 110 2h-1v2a2 2 0 01-2 2h-2v1a1 1 0 11-2 0v-1H9v1a1 1 0 11-2 0v-1H5a2 2 0 01-2-2v-2H2a1 1 0 110-2h1V9H2a1 1 0 010-2h1V5a2 2 0 012-2h2V2zM5 5h10v10H5V5z"
-                            clipRule="evenodd"
-                        />
-                    </svg>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path d="M13 7H7v6h6V7z" />
+                            <path
+                                fillRule="evenodd"
+                                d="M7 2a1 1 0 012 0v1h2V2a1 1 0 112 0v1h2a2 2 0 012 2v2h1a1 1 0 110 2h-1v2h1a1 1 0 110 2h-1v2a2 2 0 01-2 2h-2v1a1 1 0 11-2 0v-1H9v1a1 1 0 11-2 0v-1H5a2 2 0 01-2-2v-2H2a1 1 0 110-2h1V9H2a1 1 0 010-2h1V5a2 2 0 012-2h2V2zM5 5h10v10H5V5z"
+                                clipRule="evenodd"
+                            />
+                        </svg>
 
-                    <span className="hidden text-sm capitalize">
-                        upload music
-                    </span>
-                </p>
+                        <span className="hidden text-sm capitalize">
+                            upload music
+                        </span>
+                    </p>
+                )}
             </nav>
         </div>
     );

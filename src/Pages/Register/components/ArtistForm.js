@@ -18,7 +18,6 @@ const ArtistForm = ({
     };
 
     const updateSocialMedia = (val, idx) => {
-        console.log(formRows);
         setFormRows(
             formRows.map((row, i) => {
                 if (i !== idx) {
