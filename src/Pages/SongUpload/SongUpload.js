@@ -64,7 +64,7 @@ const SongUpload = ({
                         showPreview={false}
                     />
 
-                    {mp3FileName && <p> {mp3FileName}</p>}
+                    {mp3FileName && <p>{mp3FileName}</p>}
 
                     <div className="py-4">
                         <button

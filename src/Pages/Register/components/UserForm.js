@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FileUpload } from '../../../components/FileUpload';
 
 const UserForm = ({
@@ -7,24 +7,39 @@ const UserForm = ({
     setFormType,
     imgPreview,
     removeImg,
+    formType,
+    currentUser = {
+        firstName: '',
+        lastName: '',
+        city: '',
+        state: '',
+        email: '',
+    },
 }) => {
     return (
         <div className="bg-grey-light min-h-screen">
             <div className="container w-7/12 mx-auto flex-1 flex flex-col items-center justify-center px-2">
                 <div className="text-gray-700 bg-white px-6 py-8 rounded shadow-md text-black w-full mb-10 mt-5">
-                    <h1 className="mb-2 text-3xl text-center">Sign up</h1>
-                    <p
-                        onClick={() => setFormType('artist')}
-                        className="text-center cursor-pointer text-blue-500"
-                    >
-                        Register as an artist
-                    </p>
+                    {formType !== 'update' && (
+                        <>
+                            <h1 className="mb-2 text-3xl text-center">
+                                Sign up
+                            </h1>
+                            <p
+                                onClick={() => setFormType('artist')}
+                                className="text-center cursor-pointer text-blue-500"
+                            >
+                                Register as an artist
+                            </p>
+                        </>
+                    )}
                     <div className="flex flex-wrap -mx-2 space-y-4 py-4 md:space-y-0">
                         <div className="w-full px-2 md:w-1/2">
                             <input
                                 onChange={(e) =>
                                     updateUser('firstName', e.target.value)
                                 }
+                                value={currentUser?.firstName}
                                 className="w-full h-10 px-3 text-base placeholder-gray-400 border rounded focus:shadow-outline"
                                 type="text"
                                 placeholder="First Name"
@@ -36,6 +51,7 @@ const UserForm = ({
                                 onChange={(e) =>
                                     updateUser('lastName', e.target.value)
                                 }
+                                value={currentUser?.lastName}
                                 className="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
                                 type="text"
                                 placeholder="Last Name"
@@ -53,6 +69,7 @@ const UserForm = ({
                                 type="text"
                                 id="userName"
                                 placeholder="User Name"
+                                value={currentUser?.userName}
                             />
                         </div>
                     </div>
@@ -67,6 +84,7 @@ const UserForm = ({
                                 type="text"
                                 id="email"
                                 placeholder="Email"
+                                value={currentUser?.email}
                             />
                         </div>
                     </div>
@@ -88,10 +106,17 @@ const UserForm = ({
                                 name="city"
                                 id="city"
                                 placeholder="City"
+                                value={currentUser?.city}
                             />
                         </div>
                         <div className="w-full px-2 md:w-1/2">
-                            <select className="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline">
+                            <select
+                                value={currentUser?.state}
+                                onChange={(e) =>
+                                    updateUser('state', e.target.value)
+                                }
+                                className="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
+                            >
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
@@ -146,36 +171,48 @@ const UserForm = ({
                             </select>
                         </div>
                     </div>
-                    <div className="flex flex-wrap py-4">
-                        <div className="w-full">
-                            <input
-                                onChange={(e) =>
-                                    updateUser('password', e.target.value)
-                                }
-                                className="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
-                                type="password"
-                                id="password"
-                                placeholder="Password"
-                            />
-                        </div>
-                    </div>
-                    <div className="flex flex-wrap">
-                        <div className="w-full">
-                            <input
-                                className="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
-                                type="password"
-                                id="password_confirm"
-                                placeholder="Confirm Password"
-                            />
-                        </div>
-                    </div>
+                    {formType === 'update' ? (
+                        <></>
+                    ) : (
+                        <>
+                            <div className="flex flex-wrap py-4">
+                                <div className="w-full">
+                                    <input
+                                        onChange={(e) =>
+                                            updateUser(
+                                                'password',
+                                                e.target.value
+                                            )
+                                        }
+                                        className="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
+                                        type="password"
+                                        id="password"
+                                        placeholder="Password"
+                                    />
+                                </div>
+                            </div>
+                            <div className="flex flex-wrap">
+                                <div className="w-full">
+                                    <input
+                                        className="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
+                                        type="password"
+                                        id="password_confirm"
+                                        placeholder="Confirm Password"
+                                    />
+                                </div>
+                            </div>
+                        </>
+                    )}
+
                     <div className="py-4">
                         <button
                             onClick={() => registerUser()}
                             type="submit"
                             className="bg-green-400 w-full text-center py-3 rounded bg-green text-white hover:bg-green-dark focus:outline-none my-1"
                         >
-                            Create Account
+                            {formType === 'update'
+                                ? 'Update Account'
+                                : 'Create Account'}
                         </button>
                     </div>
                 </div>

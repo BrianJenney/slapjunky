@@ -49,7 +49,7 @@ const Search = ({ setQuery, searchResults }) => {
                     autocomplete="off"
                 />
             </div>
-            <div className="w-full bg-gray-900 center mt-20">
+            <div className="w-9/12 xs:w-full bg-gray-900 center mt-20 mx-auto">
                 {searchResults.map((res) => {
                     return (
                         <div className="flex flex-row space-x-4 justify-between items-center hover:bg-gray-700 cursor-pointer py-2 px-2">

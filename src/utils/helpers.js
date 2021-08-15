@@ -15,7 +15,7 @@ const baseUrl = isProd
     : 'http://localhost:5000/api/';
 const imagekit = new ImageKit({
     publicKey: 'public_fU+l6kWoRCFnzcl+LSvVU2YkY1Y=',
-    urlEndpoint: 'https://ik.imagekit.io/your_imagekit_id',
+    urlEndpoint: 'https://ik.imagekit.io/i86bagiduka/',
     authenticationEndpoint: `${baseUrl}image/imageAuth`,
 });
 

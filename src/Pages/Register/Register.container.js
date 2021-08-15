@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { apiClient } from '../../utils/apiClient';
 import Register from './Register';
 import { UserContext } from '../../contexts/UserContext';
+import { imageUpload } from '../../utils/helpers';
 
 const RegisterContainer = () => {
     const [formType, setFormType] = useState('listener');
@@ -29,12 +30,15 @@ const RegisterContainer = () => {
     const removeImg = () => setImgPreview(null);
 
     const registerUser = async (socialMedia = []) => {
+        const data = await imageUpload(user.avatar);
+
         try {
             const userData = await apiClient('user/create', {
                 ...user,
+                avatar: data?.url,
                 socialMedia,
             });
-            console.log(userData?.data?.user);
+
             storeUser(userData?.data?.user);
             history.push('/discover');
         } catch (e) {
