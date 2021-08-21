@@ -40,7 +40,6 @@ const MusicContainer = ({ user }) => {
                 setIsLoading(false);
             }
         };
-        console.log(searchBy);
         fetchSongs(searchBy);
     }, [location?.search]);
 

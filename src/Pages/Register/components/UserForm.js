@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FileUpload } from '../../../components/FileUpload';
 
 const UserForm = ({
@@ -18,7 +18,7 @@ const UserForm = ({
 }) => {
     return (
         <div className="bg-grey-light min-h-screen">
-            <div className="container w-7/12 mx-auto flex-1 flex flex-col items-center justify-center px-2">
+            <div className="container w-9/12 mx-auto flex-1 flex flex-col items-center justify-center px-2">
                 <div className="text-gray-700 bg-white px-6 py-8 rounded shadow-md text-black w-full mb-10 mt-5">
                     {formType !== 'update' && (
                         <>

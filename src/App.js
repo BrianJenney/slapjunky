@@ -10,7 +10,9 @@ const App = () => {
             <SongContextProvider>
                 <Router>
                     <Routes />
-                    <FooterNav />
+                    <div className="fixed">
+                        <FooterNav />
+                    </div>
                 </Router>
             </SongContextProvider>
         </UserContextProvider>

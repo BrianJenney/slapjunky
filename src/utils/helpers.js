@@ -14,8 +14,8 @@ const baseUrl = isProd
     ? 'https://4mxwytmbdh.execute-api.us-east-1.amazonaws.com/dev/api/'
     : 'http://localhost:5000/api/';
 const imagekit = new ImageKit({
-    publicKey: 'public_fU+l6kWoRCFnzcl+LSvVU2YkY1Y=',
-    urlEndpoint: 'https://ik.imagekit.io/i86bagiduka/',
+    publicKey: process.env.REACT_APP_IMAGE_KIT_KEY,
+    urlEndpoint: process.env.REACT_APP_IMAGE_KIT_URL,
     authenticationEndpoint: `${baseUrl}image/imageAuth`,
 });
 

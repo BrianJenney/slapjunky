@@ -8,6 +8,7 @@ import { Search } from './Pages/Search';
 import { ForgotPassword } from './Pages/ForgotPassword';
 import { Account } from './Pages/Account';
 import { ResetPassword } from './Pages/ResetPassword';
+import { Artist } from './Pages/Artist';
 import { UserContext } from './contexts/UserContext';
 
 const Routes = () => {
@@ -29,6 +30,9 @@ const Routes = () => {
             </Route>
             <Route path="/music">
                 <Music user={user} />
+            </Route>
+            <Route path="/artist/:id">
+                <Artist />
             </Route>
             <Route path="/artist/upload">
                 <SongUpload user={user} />

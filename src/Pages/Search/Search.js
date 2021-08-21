@@ -30,9 +30,9 @@ const Search = ({ setQuery, searchResults }) => {
                         <svg
                             fill="none"
                             stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             viewBox="0 0 24 24"
                             className="w-6 h-6"
                         >
@@ -64,7 +64,14 @@ const Search = ({ setQuery, searchResults }) => {
                                 }}
                                 src={res.songCoverUrl}
                             />
-                            <p className="text-gray-500">{res.artistName}</p>
+                            <p
+                                className="text-gray-500"
+                                onClick={() =>
+                                    history.push(`/artist/${res.userId}`)
+                                }
+                            >
+                                {res.artistName}
+                            </p>
                             <p className="text-white">{res.title}</p>
                         </div>
                     );

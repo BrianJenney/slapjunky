@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { formatUrl } from '../../../utils/helpers';
 import { SongContext } from '../../../contexts/SongContext';
+import { useHistory } from 'react-router';
 
 const Song = ({ likeSong, song, user }) => {
+    console.log(song);
     const { setCurrentSong } = useContext(SongContext);
-
+    const history = useHistory();
     const isLiked = song.likes.includes(user?._id);
 
     return (
@@ -26,7 +28,14 @@ const Song = ({ likeSong, song, user }) => {
                 />
             </div>
             <div>
-                <p className="text-white uppercase">{song.artistName}</p>
+                <p
+                    onClick={() =>
+                        history.push(`/artist/${song?.artist?.[0]?._id}`)
+                    }
+                    className="text-white uppercase cursor-pointer"
+                >
+                    {song.artistName}
+                </p>
                 <p className="text-white">{song.title}</p>
             </div>
             <div className="flex justify-end">
