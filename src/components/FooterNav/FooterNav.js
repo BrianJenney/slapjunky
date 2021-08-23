@@ -9,7 +9,7 @@ const FooterNav = () => {
     const history = useHistory();
     const { user } = useContext(UserContext);
 
-    const isHomePage = ['/', '/artist/upload'].includes(location?.pathname);
+    const isHomePage = ['/', '/upload'].includes(location?.pathname);
 
     const isArtist = user?.userType === 'artist';
 
@@ -88,7 +88,7 @@ const FooterNav = () => {
 
                 {isArtist && (
                     <p
-                        onClick={() => history.push('/artist/upload')}
+                        onClick={() => history.push('/upload')}
                         className="flex flex-col flex-grow items-center justify-center
             overflow-hidden whitespace-no-wrap text-sm transition-colors duration-100
             ease-in-out focus:text-orange-500 cursor-pointer"

@@ -10,11 +10,13 @@ const AccountContainer = () => {
     const [imgPreview, setImgPreview] = useState(null);
     const [currentUser, setUser] = useState(null);
     const [saveSuccess, setSaveSuccess] = useState(false);
+    const [isArtistForm, setArtistForm] = useState(false);
     const [updateError, setError] = useState(null);
 
     useEffect(() => {
         setUser(user);
         setImgPreview(user?.avatar);
+        setArtistForm(user?.userType === 'artist' ? true : false);
     }, [user]);
 
     const updateUser = (propName, val) => {
@@ -37,6 +39,7 @@ const AccountContainer = () => {
         try {
             const userData = await apiClient('user/update', {
                 ...currentUser,
+                userType: isArtistForm ? 'artist' : 'user',
                 userId: currentUser._id,
                 avatar: imageData?.url,
                 socialMedia,
@@ -49,6 +52,25 @@ const AccountContainer = () => {
 
     return (
         <div className="bg-gray-900 overflow-scroll relative">
+            <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                <input
+                    type="checkbox"
+                    name="toggle"
+                    id="toggle"
+                    onClick={(e) => {
+                        setArtistForm(!isArtistForm);
+                    }}
+                    checked={isArtistForm}
+                    className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+                />
+                <label
+                    for="toggle"
+                    className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
+                ></label>
+            </div>
+            <label for="toggle" className="text-xs text-gray-700">
+                Switch to artist
+            </label>
             {(saveSuccess || updateError) && (
                 <div class="flex h-screen absolute mx-auto w-full">
                     <div class="m-auto">
@@ -79,7 +101,7 @@ const AccountContainer = () => {
                 </div>
             )}
 
-            {user?.userType === 'artist' ? (
+            {isArtistForm ? (
                 <ArtistForm
                     formType="update"
                     currentUser={currentUser}

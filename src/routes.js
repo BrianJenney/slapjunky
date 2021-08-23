@@ -34,7 +34,7 @@ const Routes = () => {
             <Route path="/artist/:id">
                 <Artist />
             </Route>
-            <Route path="/artist/upload">
+            <Route path="/upload">
                 <SongUpload user={user} />
             </Route>
             <Route path="/register">
