@@ -10,6 +10,7 @@ import { Account } from './Pages/Account';
 import { ResetPassword } from './Pages/ResetPassword';
 import { Artist } from './Pages/Artist';
 import { UserContext } from './contexts/UserContext';
+import { GeoMap } from './Pages/GeoMap';
 
 const Routes = () => {
     const history = useHistory();
@@ -42,6 +43,9 @@ const Routes = () => {
             </Route>
             <Route path="/account">
                 <Account />
+            </Route>
+            <Route path="/map">
+                <GeoMap />
             </Route>
             <Route path="/forgotpassword">
                 <ForgotPassword />
