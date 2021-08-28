@@ -32,7 +32,7 @@ const SongPlayer = () => {
     if (!song) return <></>;
 
     return (
-        <div className="w-9/12 mx-auto bg-gray-800 rounded-lg px-8 py-4">
+        <div className="w-full mx-auto bg-gray-800 rounded-lg px-8 py-2">
             <div className="flex justify-end">
                 <p
                     onClick={() => setCurrentSong(null)}
@@ -43,7 +43,11 @@ const SongPlayer = () => {
             </div>
             <div className="flex items-center space-x-4 justify-between">
                 <img
-                    className="h-20"
+                    style={{
+                        width: '100px',
+                        height: '100px',
+                        objectFit: 'cover',
+                    }}
                     alt="song art"
                     src={formatUrl(song?.songCoverUrl)}
                 />

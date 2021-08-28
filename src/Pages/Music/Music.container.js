@@ -13,6 +13,7 @@ const MusicContainer = ({ user }) => {
         genre: 'genre',
         artistId: 'artistId',
         region: 'region',
+        cityState: 'cityState',
     };
 
     const searchBy = Object.keys(searchByMap).reduce((acc, val) => {

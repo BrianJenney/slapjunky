@@ -59,6 +59,8 @@ const SongUploadContainer = ({ user }) => {
         setIsLoading(true);
         form.set('artistId', user?._id);
         form.set('artistName', user?.artistName ?? user?.firstName);
+        form.set('city', user?.city);
+        form.set('state', user?.state);
 
         //cannot handle this on backend currently with lambda and 10mb hard limit on body payload
         await handleImageUpload(form.get('songArt'));

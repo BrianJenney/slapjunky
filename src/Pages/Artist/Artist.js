@@ -27,18 +27,20 @@ const Artist = ({ artist = { socialMedia: [] }, songs = [] }) => {
                 </section>
             </div>
             <div className="mt-5">
-                {artist?.socialMedia.map((link) => (
-                    <div>
-                        <SocialIcon url={link} />
-                        <a
-                            className="text-white ml-5"
-                            aria-labelledby="instagram link"
-                            href={link}
-                        >
-                            {link}
-                        </a>
-                    </div>
-                ))}
+                {artist?.socialMedia
+                    .filter((link) => link.length)
+                    .map((link) => (
+                        <div>
+                            <SocialIcon url={link} />
+                            <a
+                                className="text-white ml-5"
+                                aria-labelledby="instagram link"
+                                href={link}
+                            >
+                                {link}
+                            </a>
+                        </div>
+                    ))}
             </div>
             <div className="mt-16 mb-16 divide-y-2 divide-purple-300 divide-solid">
                 {songs.map((song, i) => (

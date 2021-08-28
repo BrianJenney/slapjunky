@@ -69,7 +69,7 @@ const AccountContainer = () => {
                 ></label>
             </div>
             <label for="toggle" className="text-xs text-gray-700">
-                Switch to artist
+                Switch to {isArtistForm ? 'user' : 'artist'}
             </label>
             {(saveSuccess || updateError) && (
                 <div class="flex h-screen absolute mx-auto w-full">
