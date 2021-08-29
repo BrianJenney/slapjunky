@@ -29,6 +29,20 @@ const AccountContainer = () => {
 
     const removeImg = () => setImgPreview(null);
 
+    const removeSong = async (songId) => {
+        try {
+            await apiClient('songs/remove', { songId });
+            const filteredSongs = currentUser.songs.filter(
+                (song) => song._id !== songId
+            );
+
+            setUser({ ...user, songs: filteredSongs });
+            storeUser({ ...user, songs: filteredSongs });
+        } catch (e) {
+            throw e;
+        }
+    };
+
     const registerUser = async (socialMedia = []) => {
         let imageData;
         if (currentUser.avatar instanceof File) {
@@ -109,6 +123,7 @@ const AccountContainer = () => {
                     registerUser={registerUser}
                     removeImg={removeImg}
                     imgPreview={imgPreview}
+                    removeSong={removeSong}
                 />
             ) : (
                 <UserForm

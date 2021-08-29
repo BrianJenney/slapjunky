@@ -8,6 +8,7 @@ const ArtistForm = ({
     imgPreview,
     removeImg,
     formType,
+    removeSong,
     currentUser = {
         artistName: '',
         firstName: '',
@@ -19,6 +20,7 @@ const ArtistForm = ({
         bio: '',
     },
 }) => {
+    console.log(currentUser);
     const [formRows, setFormRows] = useState([
         '',
         ...(currentUser?.socialMedia || []),
@@ -269,6 +271,30 @@ const ArtistForm = ({
                                 <option value="WY">Wyoming</option>
                             </select>
                         </div>
+                        <section className="">
+                            {currentUser.songs.map((song) => (
+                                <div className="flex flex-row justify-center items-center space-x-6 mt-5 px-4">
+                                    <img
+                                        key={song?._id}
+                                        alt={song?.title}
+                                        style={{
+                                            width: '50px',
+                                            height: '50px',
+                                            objectFit: 'cover',
+                                        }}
+                                        src={song?.songCoverUrl}
+                                    />
+                                    <p>{song?.title}</p>
+                                    <button
+                                        onClick={() => removeSong(song?._id)}
+                                        type="submit"
+                                        className="text-xs bg-red-400 text-center rounded text-white hover:bg-green-dark focus:outline-none py-2 px-2"
+                                    >
+                                        Remove Song
+                                    </button>
+                                </div>
+                            ))}
+                        </section>
                     </div>
                     {formType === 'update' ? (
                         <></>
