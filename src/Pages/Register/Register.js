@@ -9,6 +9,7 @@ const Register = ({
     imgPreview,
     setFormType,
     formType,
+    currentUser,
 }) => {
     if (formType === 'artist') {
         return (
@@ -18,6 +19,7 @@ const Register = ({
                 registerUser={registerUser}
                 removeImg={removeImg}
                 imgPreview={imgPreview}
+                currentUser={currentUser}
             />
         );
     }
@@ -28,6 +30,7 @@ const Register = ({
             registerUser={registerUser}
             removeImg={removeImg}
             imgPreview={imgPreview}
+            currentUser={currentUser}
         />
     );
 };

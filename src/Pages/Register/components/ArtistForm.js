@@ -20,7 +20,6 @@ const ArtistForm = ({
         bio: '',
     },
 }) => {
-    console.log(currentUser);
     const [formRows, setFormRows] = useState([
         '',
         ...(currentUser?.socialMedia || []),
@@ -272,7 +271,7 @@ const ArtistForm = ({
                             </select>
                         </div>
                         <section className="">
-                            {currentUser.songs.map((song) => (
+                            {(currentUser?.songs || []).map((song) => (
                                 <div className="flex flex-row justify-center items-center space-x-6 mt-5 px-4">
                                     <img
                                         key={song?._id}

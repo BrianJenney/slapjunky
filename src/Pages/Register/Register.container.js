@@ -18,7 +18,7 @@ const RegisterContainer = () => {
             setImgPreview(URL.createObjectURL(val));
         }
         user[propName] = val;
-        setUser(user);
+        setUser({ ...user });
     };
 
     const changeFormType = (type) => {
@@ -49,6 +49,7 @@ const RegisterContainer = () => {
     return (
         <div className="bg-gray-900 overflow-scroll">
             <Register
+                currentUser={user}
                 formType={formType}
                 setFormType={changeFormType}
                 registerUser={registerUser}
