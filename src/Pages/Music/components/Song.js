@@ -30,7 +30,7 @@ const Song = ({ likeSong, song, user }) => {
             <div>
                 <p
                     onClick={() =>
-                        history.push(`/artist/${song?.user?.[0]?._id}`)
+                        history.push(`/artist/${song?.artist?.[0]?._id}`)
                     }
                     className="text-white uppercase cursor-pointer"
                 >
