@@ -1,4 +1,5 @@
 import ImageKit from 'imagekit-javascript';
+import { apiClient } from './apiClient';
 
 export const formatUrl = (url) => {
     if (!url) return;
@@ -33,4 +34,18 @@ export const imageUpload = async (file) => {
             }
         );
     });
+};
+
+export const likeSong = ({ userId, songId, removeLike, callback }) => {
+    apiClient('songs/like', {
+        userId,
+        songId,
+        removeLike,
+    })
+        .then((songData) => {
+            callback(songData);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
 };

@@ -33,7 +33,10 @@ const Routes = () => {
                 <Music user={user} />
             </Route>
             <Route path="/artist/:id">
-                <Artist />
+                <Artist user={user} />
+            </Route>
+            <Route path="/song">
+                <Music user={user} />
             </Route>
             <Route path="/upload">
                 <SongUpload user={user} />

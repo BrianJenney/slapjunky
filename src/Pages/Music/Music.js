@@ -8,7 +8,12 @@ const Music = ({ songs = [], isLoading, likeSong, user }) => {
             <div className="mt-16 mb-16 w-9/12 overflow-scroll divide-y-2 divide-purple-300 divide-solid no-scrollbar">
                 {songs.map((song, i) => (
                     <div key={`${i}_${song.url}`} className="pb-4 py-4">
-                        <Song user={user} likeSong={likeSong} song={song} />
+                        <Song
+                            user={user}
+                            artist={song?.artist[0]}
+                            likeSong={likeSong}
+                            song={song}
+                        />
                     </div>
                 ))}
             </div>

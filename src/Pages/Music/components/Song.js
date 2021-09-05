@@ -3,8 +3,8 @@ import { formatUrl } from '../../../utils/helpers';
 import { SongContext } from '../../../contexts/SongContext';
 import { useHistory } from 'react-router';
 
-const Song = ({ likeSong, song, user }) => {
-    console.log(song);
+const Song = ({ likeSong, song, user, artist }) => {
+    console.log({ song });
     const { setCurrentSong } = useContext(SongContext);
     const history = useHistory();
     const isLiked = song.likes.includes(user?._id);
@@ -13,7 +13,7 @@ const Song = ({ likeSong, song, user }) => {
         <div className="flex justify-between items-center">
             <div
                 onClick={() => setCurrentSong(song)}
-                className="flex items-center space-x-4 justify-between"
+                className="flex items-center space-x-4 justify-between cursor-pointer"
             >
                 <img
                     style={{
@@ -29,14 +29,17 @@ const Song = ({ likeSong, song, user }) => {
             </div>
             <div>
                 <p
-                    onClick={() =>
-                        history.push(`/artist/${song?.artist?.[0]?._id}`)
-                    }
+                    onClick={() => history.push(`/artist/${artist?._id}`)}
                     className="text-white uppercase cursor-pointer"
                 >
                     {song.artistName}
                 </p>
-                <p className="text-white">{song.title}</p>
+                <p
+                    className="text-white cursor-pointer"
+                    onClick={() => history.push(`/song/?songId=${song._id}`)}
+                >
+                    {song.title}
+                </p>
             </div>
             <div className="flex justify-end">
                 <svg

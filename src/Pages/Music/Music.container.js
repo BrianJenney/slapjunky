@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { apiClient } from '../../utils/apiClient';
 import { useLocation } from 'react-router-dom';
 import Music from './Music';
+import Artist from '../Artist/Artist';
+import { likeSong } from '../../utils/helpers';
+import isEmpty from 'lodash/isEmpty';
 
 const MusicContainer = ({ user }) => {
     const [songs, setSongs] = useState([]);
@@ -9,11 +12,14 @@ const MusicContainer = ({ user }) => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location?.search);
 
+    const isSongPage = location.pathname.includes('song');
+
     const searchByMap = {
         genre: 'genre',
         artistId: 'artistId',
         region: 'region',
         cityState: 'cityState',
+        songId: 'songId',
     };
 
     const searchBy = Object.keys(searchByMap).reduce((acc, val) => {
@@ -41,33 +47,38 @@ const MusicContainer = ({ user }) => {
                 setIsLoading(false);
             }
         };
-        fetchSongs(searchBy);
+        if (!isEmpty(searchBy)) {
+            fetchSongs(searchBy);
+        }
     }, [location?.search]);
 
-    const likeSong = ({ userId, songId, removeLike }) => {
-        apiClient('songs/like', {
+    const addOrRemoveLike = ({ userId, songId, removeLike }) => {
+        const callback = (songData) => {
+            const newSong = songData?.data?.song;
+
+            setSongs(
+                songs.map((song) => (song._id === newSong._id ? newSong : song))
+            );
+        };
+        likeSong({
             userId,
             songId,
             removeLike,
-        })
-            .then((songData) => {
-                const newSong = songData?.data?.song;
-
-                setSongs(
-                    songs.map((song) =>
-                        song._id === newSong._id ? newSong : song
-                    )
-                );
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+            callback,
+        });
     };
 
-    return (
+    return isSongPage ? (
+        <Artist
+            songs={songs}
+            artist={songs?.[0]?.artist?.[0]}
+            user={user}
+            likeSong={addOrRemoveLike}
+        />
+    ) : (
         <Music
             user={user}
-            likeSong={likeSong}
+            likeSong={addOrRemoveLike}
             isLoading={isLoading}
             songs={songs}
         />
