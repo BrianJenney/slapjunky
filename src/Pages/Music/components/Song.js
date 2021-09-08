@@ -4,7 +4,6 @@ import { SongContext } from '../../../contexts/SongContext';
 import { useHistory } from 'react-router';
 
 const Song = ({ likeSong, song, user, artist }) => {
-    console.log({ song });
     const { setCurrentSong } = useContext(SongContext);
     const history = useHistory();
     const isLiked = song.likes.includes(user?._id);

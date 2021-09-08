@@ -1,10 +1,20 @@
 import React from 'react';
 import { Song } from './components';
 
-const Music = ({ songs = [], isLoading, likeSong, user }) => {
+const Music = ({ songs = [], isLoading, likeSong, user, loadMore }) => {
     return (
         <div className="bg-gray-900 overflow-hidden flex flex-col items-center content-center h-screen relative">
-            {isLoading && <p className="text-white">LOADING</p>}
+            {isLoading && (
+                <div className="flex justify-center items-center space-x-2">
+                    <div>
+                        <div
+                            style={{ borderTopColor: 'transparent' }}
+                            className="w-16 h-16 border-4 border-blue-400 border-double rounded-full animate-spin"
+                        ></div>
+                    </div>
+                    <p className="text-white text-2xl">LOADING SLAPS</p>
+                </div>
+            )}
             <div className="mt-16 mb-16 w-9/12 overflow-scroll divide-y-2 divide-purple-300 divide-solid no-scrollbar">
                 {songs.map((song, i) => (
                     <div key={`${i}_${song.url}`} className="pb-4 py-4">
@@ -17,6 +27,16 @@ const Music = ({ songs = [], isLoading, likeSong, user }) => {
                     </div>
                 ))}
             </div>
+            {songs.length > 0 && (
+                <div className="mb-16">
+                    <button
+                        onClick={() => loadMore()}
+                        className="bg-green-400 text-white py-2 px-4 rounded inline-flex items-center"
+                    >
+                        Load More
+                    </button>
+                </div>
+            )}
         </div>
     );
 };
