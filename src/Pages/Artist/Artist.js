@@ -4,10 +4,13 @@ import { SocialIcon } from 'react-social-icons';
 
 const Artist = ({
     artist = { socialMedia: [] },
+    submitComment,
     songs = [],
     likeSong,
+    setComment,
     user,
 }) => {
+    console.log({ user });
     const ikQualityFormat = (url, quality, width) => {
         if (!url) return;
         const params = `tr:w-${width || 250},q:${quality || 80}`;
@@ -69,6 +72,47 @@ const Artist = ({
                         />
                     </div>
                 ))}
+            </div>
+
+            <div className="flex h-screen bg-gray-800 justify-center items-center">
+                <div className="w-10/12 bg-white p-2 pt-4 rounded">
+                    <div className="flex ml-3">
+                        <div className="mr-3">
+                            <img
+                                width="75"
+                                height="75"
+                                src={user?.avatar}
+                                alt="user avatar"
+                                className="rounded-full"
+                            />
+                        </div>
+                        <div>
+                            <h1 className="font-semibold">
+                                {user?.userName || user?.firstName}
+                            </h1>
+                        </div>
+                    </div>
+
+                    <div className="mt-3 p-3 w-full">
+                        <textarea
+                            onChange={(e) => setComment(e.target.value)}
+                            rows="3"
+                            className="border p-2 rounded w-full"
+                            placeholder="Write something..."
+                        ></textarea>
+                    </div>
+
+                    <div className="flex justify-between mx-3">
+                        <div>
+                            <button
+                                onClick={() => submitComment(songs?.[0]?._id)}
+                                className="px-4 py-1 bg-gray-800 text-white rounded font-light hover:bg-gray-700"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

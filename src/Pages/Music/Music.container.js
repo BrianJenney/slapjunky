@@ -7,6 +7,7 @@ import { likeSong } from '../../utils/helpers';
 import isEmpty from 'lodash/isEmpty';
 
 const MusicContainer = ({ user }) => {
+    const [comment, setComment] = useState(null);
     const [songs, setSongs] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [page, setPage] = useState(1);
@@ -75,10 +76,21 @@ const MusicContainer = ({ user }) => {
         setPage((page) => page + 1);
     };
 
+    const submitComment = (songId) => {
+        apiClient('comment/addComment', {
+            userId: user?._id,
+            userName: user?.userName || user?.firstName,
+            songId,
+            comment,
+        });
+    };
+
     return (
         <div>
             {isSongPage ? (
                 <Artist
+                    setComment={setComment}
+                    submitComment={submitComment}
                     songs={songs}
                     artist={songs?.[0]?.artist?.[0]}
                     user={user}
