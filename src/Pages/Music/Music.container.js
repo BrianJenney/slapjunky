@@ -9,6 +9,7 @@ import isEmpty from 'lodash/isEmpty';
 const MusicContainer = ({ user }) => {
     const [comment, setComment] = useState(null);
     const [songs, setSongs] = useState([]);
+    const [songComments, setSongComments] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [page, setPage] = useState(1);
     const location = useLocation();
@@ -43,6 +44,7 @@ const MusicContainer = ({ user }) => {
             });
 
             setSongs((prev) => [...prev, ...data?.data]);
+            setSongComments(data?.comments);
         } catch (ex) {
             throw ex;
         } finally {
@@ -77,19 +79,27 @@ const MusicContainer = ({ user }) => {
     };
 
     const submitComment = (songId) => {
-        apiClient('comment/addComment', {
+        const newComment = {
             userId: user?._id,
             userName: user?.userName || user?.firstName,
             songId,
             comment,
-        });
+        };
+        apiClient('comment/addComment', newComment);
+
+        setComment(null);
+        setSongComments((prev) =>
+            prev.concat({ ...newComment, createdAt: new Date() })
+        );
     };
 
     return (
         <div>
             {isSongPage ? (
                 <Artist
+                    comments={songComments}
                     setComment={setComment}
+                    comment={comment}
                     submitComment={submitComment}
                     songs={songs}
                     artist={songs?.[0]?.artist?.[0]}

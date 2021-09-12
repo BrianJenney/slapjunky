@@ -11,11 +11,10 @@ const ResetPasswordContainer = () => {
     const submit = async () => {
         try {
             const token = window.location.pathname.split('/').pop();
-            const response = await apiClient('password/changepassword', {
+            await apiClient('password/changepassword', {
                 password: newPassword,
                 token,
             });
-            console.log(response);
             setisSuccessful(true);
         } catch (e) {
             setErrorMessage('Oops an error occured with your request');

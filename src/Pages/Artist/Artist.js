@@ -5,12 +5,13 @@ import { SocialIcon } from 'react-social-icons';
 const Artist = ({
     artist = { socialMedia: [] },
     submitComment,
+    comment,
+    comments = [],
     songs = [],
     likeSong,
     setComment,
     user,
 }) => {
-    console.log({ user });
     const ikQualityFormat = (url, quality, width) => {
         if (!url) return;
         const params = `tr:w-${width || 250},q:${quality || 80}`;
@@ -95,6 +96,7 @@ const Artist = ({
 
                     <div className="mt-3 p-3 w-full">
                         <textarea
+                            value={comment}
                             onChange={(e) => setComment(e.target.value)}
                             rows="3"
                             className="border p-2 rounded w-full"
@@ -111,6 +113,19 @@ const Artist = ({
                                 Submit
                             </button>
                         </div>
+                    </div>
+
+                    <div className="flex-col bg-white pb-15">
+                        {comments.map(({ comment, userName, createdAt }) => (
+                            <div className="p-2 w-full">
+                                <p className="text-sm text-opacity-50">
+                                    {userName} -{' '}
+                                    {new Date(createdAt).toDateString()}
+                                </p>
+                                <p>{comment}</p>
+                                <hr />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

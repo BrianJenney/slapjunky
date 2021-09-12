@@ -8,7 +8,6 @@ const ResetPassword = ({
     isValidPassword,
     errorMessage,
 }) => {
-    console.log(isValidPassword);
     return (
         <div className="flex flex-column items-center justify-center py-20">
             {isSuccessful ? (
