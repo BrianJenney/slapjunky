@@ -7,7 +7,7 @@ import { likeSong } from '../../utils/helpers';
 import isEmpty from 'lodash/isEmpty';
 
 const MusicContainer = ({ user }) => {
-    const [comment, setComment] = useState(null);
+    const [comment, setComment] = useState('');
     const [songs, setSongs] = useState([]);
     const [songComments, setSongComments] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -85,12 +85,18 @@ const MusicContainer = ({ user }) => {
             songId,
             comment,
         };
-        apiClient('comment/addComment', newComment);
+        // this is async but we don't want to await the return as not to block
+        try {
+            apiClient('comment/addComment', newComment);
 
-        setComment(null);
-        setSongComments((prev) =>
-            prev.concat({ ...newComment, createdAt: new Date() })
-        );
+            setComment('');
+            setSongComments((prev) =>
+                prev.concat({ ...newComment, createdAt: new Date() })
+            );
+        } catch {
+            // remove last comment if we fail
+            setSongComments((prev) => prev.slice(-1));
+        }
     };
 
     return (

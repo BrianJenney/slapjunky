@@ -75,13 +75,14 @@ const Artist = ({
                 ))}
             </div>
 
-            <div className="flex h-screen bg-gray-800 justify-center items-center">
-                <div className="w-10/12 bg-white p-2 pt-4 rounded">
+            <div className="flex h-250 bg-gray-800 justify-center items-center p-10 mb-16">
+                <div className="w-full bg-white p-2 pt-4 rounded">
                     <div className="flex ml-3">
                         <div className="mr-3">
                             <img
-                                width="75"
-                                height="75"
+                                style={{ objectFit: 'cover' }}
+                                width="75px"
+                                height="75px"
                                 src={user?.avatar}
                                 alt="user avatar"
                                 className="rounded-full"
@@ -96,8 +97,8 @@ const Artist = ({
 
                     <div className="mt-3 p-3 w-full">
                         <textarea
-                            value={comment}
                             onChange={(e) => setComment(e.target.value)}
+                            value={comment}
                             rows="3"
                             className="border p-2 rounded w-full"
                             placeholder="Write something..."
@@ -115,7 +116,7 @@ const Artist = ({
                         </div>
                     </div>
 
-                    <div className="flex-col bg-white pb-15">
+                    <div className="flex-col bg-white overflow-scroll">
                         {comments.map(({ comment, userName, createdAt }) => (
                             <div className="p-2 w-full">
                                 <p className="text-sm text-opacity-50">
