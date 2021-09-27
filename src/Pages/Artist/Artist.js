@@ -22,7 +22,7 @@ const Artist = ({
         return `https://${newUrl}`;
     };
     return (
-        <div className="bg-gray-900 overflow-hidden h-screen w-9/12 m-auto overflow-scroll no-scrollbar">
+        <div className="bg-gray-900 overflow-hidden h-screen w-10/12 m-auto overflow-scroll no-scrollbar">
             <div>
                 <div className="flex flex-col items-center md:flex-row mt-5">
                     <img
@@ -35,7 +35,7 @@ const Artist = ({
                         src={ikQualityFormat(artist?.avatar, 40, 250)}
                         alt={artist?.artistName}
                     />
-                    <h1 className="text-white text-6xl ml-5">
+                    <h1 className="text-white text-6xl md:ml-5 w-full break-words">
                         {artist?.artistName}
                     </h1>
                 </div>
@@ -75,7 +75,7 @@ const Artist = ({
                 ))}
             </div>
 
-            <div className="flex h-250 bg-gray-800 justify-center items-center p-10 mb-16">
+            <div className="flex h-250 bg-gray-800 justify-center items-center md:p-10 mb-16">
                 <div className="w-full bg-white p-2 pt-4 rounded">
                     <div className="flex ml-3">
                         <div className="mr-3">

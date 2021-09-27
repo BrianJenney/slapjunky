@@ -35,7 +35,7 @@ const Song = ({ likeSong, song, user, artist }) => {
                 </p>
                 <p
                     className="text-white cursor-pointer"
-                    onClick={() => history.push(`/song/?songId=${song._id}`)}
+                    onClick={() => history.push(`/song?songId=${song._id}`)}
                 >
                     {song.title}
                 </p>
