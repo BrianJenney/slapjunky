@@ -29,6 +29,33 @@ const SongPlayer = () => {
         };
     }, [playing, song, song?._id, user?._id]);
 
+    const handleSharing = async () => {
+        if (navigator.share) {
+            try {
+                await navigator
+                    .share({
+                        title: 'Slap Junky Share',
+                        text: `Check out ${song?.name} by ${song?.artist[0].name} on SlapJunky`,
+                        url: window.location,
+                    })
+                    .then(() =>
+                        console.log(
+                            'Hooray! Your content was shared to tha world'
+                        )
+                    );
+            } catch (error) {
+                console.log(
+                    `Oops! I couldn't share to the world because: ${error}`
+                );
+            }
+        } else {
+            // fallback code
+            console.log(
+                'Web share is currently not supported on this browser. Please provide a callback'
+            );
+        }
+    };
+
     if (!song) return <></>;
 
     return (
@@ -56,17 +83,34 @@ const SongPlayer = () => {
                     <p className="text-white">{song.title}</p>
                 </div>
                 <ReactAudioPlayer
-                    autoPlay={false}
+                    autoPlay
                     onPlay={() => setIsPlaying(true)}
                     controls
                     src={formatUrl(song.url)}
                     preload="auto"
                 />
             </div>
+
             <div className="flex justify-end">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
+                    className="h-6 w-6 cursor-pointer"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="#ffff"
+                    onClick={() => handleSharing()}
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                </svg>
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 ml-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="#ffff"
@@ -78,9 +122,11 @@ const SongPlayer = () => {
                         d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
                     />
                 </svg>
+
                 <p className="text-white mr-10 ml-5">
                     {(song?.plays || []).length}
                 </p>
+
                 <svg
                     onClick={() =>
                         likeSong({

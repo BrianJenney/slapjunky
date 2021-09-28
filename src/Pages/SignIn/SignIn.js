@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-const SignIn = ({ signIn, signInError, updateUserInfo }) => {
+const SignIn = ({ signIn, signInError, updateUserInfo, isLoading }) => {
     const history = useHistory();
 
     return (
@@ -40,7 +40,7 @@ const SignIn = ({ signIn, signInError, updateUserInfo }) => {
                             onClick={() => signIn()}
                             className="text-white border-0 py-2 px-8 focus:outline-none font-medium  rounded text-xl bg-purple-600 "
                         >
-                            Log In
+                            {isLoading ? 'Logging In' : 'Log In'}
                         </button>
                         {signInError && (
                             <p className="text-sm text-red-500 py-5 text-center">

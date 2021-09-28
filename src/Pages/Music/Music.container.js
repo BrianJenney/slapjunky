@@ -43,7 +43,10 @@ const MusicContainer = ({ user }) => {
                 page,
             });
 
-            setSongs((prev) => [...prev, ...data?.data]);
+            const songData = data?.data;
+            setSongs((prev) =>
+                isSongPage ? [...songData] : [...prev, ...songData]
+            );
             setSongComments(data?.comments);
         } catch (ex) {
             throw ex;
