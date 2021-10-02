@@ -8,9 +8,7 @@ const getBaseUrl = () => {
         stage: 'https://4mxwytmbdh.execute-api.us-east-1.amazonaws.com/dev/api/',
     };
     const env = process.env.NODE_ENV;
-    return urlsByEnv[env]
-        ? 'https://4mxwytmbdh.execute-api.us-east-1.amazonaws.com/dev/api/'
-        : 'http://localhost:5000/api/';
+    return urlsByEnv[env] || 'http://localhost:5000/api/';
 };
 
 export const apiClient = (path, data, overrides = {}) => {
