@@ -11,6 +11,15 @@ const SongPlayer = () => {
     const { user } = useContext(UserContext);
     const isLiked = (song?.likes ?? []).includes(user?._id);
 
+    const addOrRemoveLike = ({ userId, songId, removeLike }) => {
+        const callback = (songData) => {
+            const newSong = songData?.data?.song;
+
+            setCurrentSong({ ...newSong });
+        };
+        likeSong({ userId, songId, removeLike, callback });
+    };
+
     useEffect(() => {
         let timeoutId;
         if (!song) return;
@@ -32,17 +41,11 @@ const SongPlayer = () => {
     const handleSharing = async () => {
         if (navigator.share) {
             try {
-                await navigator
-                    .share({
-                        title: 'Slap Junky Share',
-                        text: `Check out ${song?.name} by ${song?.artist[0].name} on SlapJunky`,
-                        url: window.location,
-                    })
-                    .then(() =>
-                        console.log(
-                            'Hooray! Your content was shared to tha world'
-                        )
-                    );
+                await navigator.share({
+                    title: 'Slap Junky Share',
+                    text: `Check out ${song?.name} by ${song?.artist[0].name} on SlapJunky`,
+                    url: window.location,
+                });
             } catch (error) {
                 console.log(
                     `Oops! I couldn't share to the world because: ${error}`
@@ -129,7 +132,7 @@ const SongPlayer = () => {
 
                 <svg
                     onClick={() =>
-                        likeSong({
+                        addOrRemoveLike({
                             userId: user?._id,
                             songId: song._id,
                             removeLike: isLiked,

@@ -1,8 +1,14 @@
 import axios from 'axios';
 
 const getBaseUrl = () => {
-    const isProd = process.env.NODE_ENV === 'production';
-    return isProd
+    const urlsByEnv = {
+        production:
+            'https://4mxwytmbdh.execute-api.us-east-1.amazonaws.com/prod/',
+        dev: 'https://4mxwytmbdh.execute-api.us-east-1.amazonaws.com/dev/api/',
+        stage: 'https://4mxwytmbdh.execute-api.us-east-1.amazonaws.com/dev/api/',
+    };
+    const env = process.env.NODE_ENV;
+    return urlsByEnv[env]
         ? 'https://4mxwytmbdh.execute-api.us-east-1.amazonaws.com/dev/api/'
         : 'http://localhost:5000/api/';
 };

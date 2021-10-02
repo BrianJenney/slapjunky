@@ -48,7 +48,7 @@ const Artist = ({
                 {artist?.socialMedia
                     .filter((link) => link.length)
                     .map((link) => (
-                        <div>
+                        <div key={link}>
                             <SocialIcon url={link} />
                             <a
                                 rel="noreferrer"
