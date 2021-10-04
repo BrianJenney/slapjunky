@@ -1,5 +1,5 @@
 import ImageKit from 'imagekit-javascript';
-import { apiClient } from './apiClient';
+import { apiClient, getBaseUrl } from './apiClient';
 
 export const formatUrl = (url) => {
     if (!url) return;
@@ -10,10 +10,7 @@ export const formatUrl = (url) => {
     return segements.join('/');
 };
 
-const isProd = process.env.NODE_ENV === 'production';
-const baseUrl = isProd
-    ? 'https://4mxwytmbdh.execute-api.us-east-1.amazonaws.com/dev/api/'
-    : 'http://localhost:5000/api/';
+const baseUrl = getBaseUrl();
 const imagekit = new ImageKit({
     publicKey: process.env.REACT_APP_IMAGE_KIT_KEY,
     urlEndpoint: process.env.REACT_APP_IMAGE_KIT_URL,
