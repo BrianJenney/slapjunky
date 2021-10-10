@@ -5,7 +5,6 @@ export const PROD_URL =
 export const STAGE_URL =
     'https://4mxwytmbdh.execute-api.us-east-1.amazonaws.com/dev/api/';
 
-console.log(process.env.REACT_APP_ENV);
 export const getBaseUrl = () => {
     const urlsByEnv = {
         production: PROD_URL,

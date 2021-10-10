@@ -1,16 +1,19 @@
 import React from 'react';
 
 const ResetPassword = ({
-    isSuccessful,
+    isSubmitting,
     submit,
+    isLoading,
     setNewPassword,
     confirmPassword,
     isValidPassword,
     errorMessage,
 }) => {
+    console.log(errorMessage);
     return (
         <div className="flex flex-column items-center justify-center py-20">
-            {isSuccessful ? (
+            {isLoading && <p className="text-white text-2xl">Submitting</p>}
+            {isSubmitting ? (
                 <p className="text-white text-2xl">Return to sign in</p>
             ) : (
                 <form className="bg-white w-7/12 mx-auto shadow-md rounded px-8 pt-6 pb-8 mb-4">

@@ -1,6 +1,12 @@
 import React from 'react';
 
-const ForgotPassword = ({ setEmail, submit, isSuccessful }) => {
+const ForgotPassword = ({
+    setEmail,
+    submit,
+    isSuccessful,
+    isSubmitting,
+    errorMessage,
+}) => {
     return (
         <div className="flex flex-column items-center justify-center py-20">
             {isSuccessful ? (
@@ -24,13 +30,18 @@ const ForgotPassword = ({ setEmail, submit, isSuccessful }) => {
                             placeholder="Email"
                         />
                     </div>
+                    {errorMessage && (
+                        <p className="text-danger">{errorMessage}</p>
+                    )}
                     <div className="flex items-center justify-between">
                         <button
                             onClick={() => submit()}
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="button"
                         >
-                            Request New Password
+                            {isSubmitting
+                                ? 'Submitting'
+                                : 'Request New Password'}
                         </button>
                     </div>
                 </form>

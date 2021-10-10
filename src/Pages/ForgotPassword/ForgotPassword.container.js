@@ -6,16 +6,20 @@ const ForgotPasswordContainer = () => {
     const [email, setEmail] = useState(null);
     const [isSuccessful, setSuccessful] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const submit = async () => {
+        setIsSubmitting(true);
         try {
             await apiClient('password/requestchangepassword', {
                 email,
             });
             setSuccessful(true);
+            setIsSubmitting(false);
         } catch (e) {
             setSuccessful(false);
-            setErrorMessage(e?.message);
+            setIsSubmitting(false);
+            setErrorMessage('An error occured, please try again');
         }
     };
     return (
@@ -23,6 +27,7 @@ const ForgotPasswordContainer = () => {
             <ForgotPassword
                 setEmail={setEmail}
                 submit={submit}
+                isSubmitting={isSubmitting}
                 isSuccessful={isSuccessful}
                 errorMessage={errorMessage}
             />
