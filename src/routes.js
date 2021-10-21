@@ -10,11 +10,13 @@ import { Account } from './Pages/Account';
 import { ResetPassword } from './Pages/ResetPassword';
 import { Artist } from './Pages/Artist';
 import { UserContext } from './contexts/UserContext';
+import { SongContext } from './contexts/SongContext';
 import { GeoMap } from './Pages/GeoMap';
 
 const Routes = () => {
     const history = useHistory();
     const { user } = useContext(UserContext);
+    const { song } = useContext(SongContext);
 
     const userInLocalStorage = JSON.parse(localStorage.userData || '{}');
 
@@ -25,41 +27,43 @@ const Routes = () => {
     }
 
     return (
-        <Switch>
-            <Route path="/discover">
-                <Search user={user} />
-            </Route>
-            <Route path="/music">
-                <Music user={user} />
-            </Route>
-            <Route path="/artist/:id">
-                <Artist user={user} />
-            </Route>
-            <Route path="/song">
-                <Music user={user} />
-            </Route>
-            <Route path="/upload">
-                <SongUpload user={user} />
-            </Route>
-            <Route path="/register">
-                <Register />
-            </Route>
-            <Route path="/account">
-                <Account />
-            </Route>
-            <Route path="/map">
-                <GeoMap />
-            </Route>
-            <Route path="/forgotpassword">
-                <ForgotPassword />
-            </Route>
-            <Route path="/resetpassword/:token">
-                <ResetPassword />
-            </Route>
-            <Route path="/">
-                <SignIn />
-            </Route>
-        </Switch>
+        <div className={song ? 'pb-300px' : ''}>
+            <Switch>
+                <Route path="/discover">
+                    <Search user={user} />
+                </Route>
+                <Route path="/music">
+                    <Music user={user} />
+                </Route>
+                <Route path="/artist/:id">
+                    <Artist user={user} />
+                </Route>
+                <Route path="/song">
+                    <Music user={user} />
+                </Route>
+                <Route path="/upload">
+                    <SongUpload user={user} />
+                </Route>
+                <Route path="/register">
+                    <Register />
+                </Route>
+                <Route path="/account">
+                    <Account />
+                </Route>
+                <Route path="/map">
+                    <GeoMap />
+                </Route>
+                <Route path="/forgotpassword">
+                    <ForgotPassword />
+                </Route>
+                <Route path="/resetpassword/:token">
+                    <ResetPassword />
+                </Route>
+                <Route path="/">
+                    <SignIn />
+                </Route>
+            </Switch>
+        </div>
     );
 };
 

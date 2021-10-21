@@ -20,7 +20,7 @@ const Search = ({ setQuery, searchResults }) => {
     ];
 
     return (
-        <div className="bg-gray-900 h-screen relative">
+        <div className="bg-gray-900 sm:py-10">
             <div className="w-8/12 relative text-gray-600 focus-within:text-gray-400 py-5 mx-auto">
                 <span className="absolute inset-y-0 left-0 flex items-center pl-2">
                     <button
@@ -46,7 +46,7 @@ const Search = ({ setQuery, searchResults }) => {
                     name="q"
                     className="w-full py-2 text-sm text-gray-900 rounded-md pl-10 focus:outline-none focus:bg-white focus:text-gray-900"
                     placeholder="Search by artist or song name"
-                    autocomplete="off"
+                    autoComplete="off"
                 />
             </div>
             <div className="w-9/12 xs:w-full bg-gray-900 center mt-20 mx-auto">
@@ -83,9 +83,9 @@ const Search = ({ setQuery, searchResults }) => {
                         Explore by Genre
                     </p>
 
-                    <div class="flex flex-col m-auto p-auto">
-                        <div class="flex overflow-x-scroll pb-10 hide-scroll-bar no-scrollbar mt-10">
-                            <div class="flex flex-nowrap m-auto">
+                    <div className="flex flex-col m-auto p-auto">
+                        <div className="flex overflow-x-scroll pb-10 hide-scroll-bar no-scrollbar mt-10">
+                            <div className="flex flex-nowrap m-auto">
                                 {genres.map(({ name, path }) => (
                                     <div
                                         key={path}

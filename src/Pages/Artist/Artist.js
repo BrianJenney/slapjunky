@@ -24,7 +24,7 @@ const Artist = ({
     return (
         <div className="bg-gray-900 overflow-hidden h-screen w-10/12 m-auto overflow-scroll no-scrollbar">
             <div>
-                <div className="flex flex-col items-center md:flex-row mt-5">
+                <div className="flex md:flex-col items-center lg:flex-row mt-5">
                     <img
                         style={{
                             width: '250px',
@@ -35,7 +35,7 @@ const Artist = ({
                         src={ikQualityFormat(artist?.avatar, 40, 250)}
                         alt={artist?.artistName}
                     />
-                    <h1 className="text-white text-6xl md:ml-5 w-full break-words">
+                    <h1 className="text-white text-6xl sm:ml-5 w-full md:break-words">
                         {artist?.artistName}
                     </h1>
                 </div>

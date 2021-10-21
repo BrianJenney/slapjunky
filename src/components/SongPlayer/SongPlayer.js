@@ -43,7 +43,7 @@ const SongPlayer = () => {
             try {
                 await navigator.share({
                     title: 'Slap Junky Share',
-                    text: `Check out ${song?.name} by ${song?.artist[0].name} on SlapJunky`,
+                    text: `Check out ${song?.title} by ${song?.artistName} on 3AM`,
                     url: window.location,
                 });
             } catch (error) {
@@ -62,7 +62,7 @@ const SongPlayer = () => {
     if (!song) return <></>;
 
     return (
-        <div className="w-full mx-auto bg-gray-800 rounded-lg px-8 py-2">
+        <div className="w-full mx-auto bg-gray-800 rounded-lg px-8 sm:px-2">
             <div className="flex justify-end">
                 <p
                     onClick={() => setCurrentSong(null)}
@@ -74,8 +74,8 @@ const SongPlayer = () => {
             <div className="flex items-center space-x-4 justify-between">
                 <img
                     style={{
-                        width: '100px',
-                        height: '100px',
+                        width: '50px',
+                        height: '50px',
                         objectFit: 'cover',
                     }}
                     alt="song art"
@@ -94,10 +94,10 @@ const SongPlayer = () => {
                 />
             </div>
 
-            <div className="flex justify-end">
+            <div className="flex justify-end md:visible py-2">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 cursor-pointer"
+                    className="h-6 w-6 cursor-pointer mr-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="#ffff"
@@ -110,25 +110,6 @@ const SongPlayer = () => {
                         d="M13 10V3L4 14h7v7l9-11h-7z"
                     />
                 </svg>
-
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 ml-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="#ffff"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
-                    />
-                </svg>
-
-                <p className="text-white mr-10 ml-5">
-                    {(song?.plays || []).length}
-                </p>
 
                 <svg
                     onClick={() =>

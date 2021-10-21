@@ -1,11 +1,18 @@
 import React from 'react';
 import { Song } from './components';
 
-const Music = ({ songs = [], isLoading, likeSong, user, loadMore }) => {
+const Music = ({
+    songs = [],
+    isLoading,
+    likeSong,
+    user,
+    loadMore,
+    canLoadMore,
+}) => {
     return (
         <div className="bg-gray-900 overflow-hidden flex flex-col items-center content-center h-screen relative">
             {isLoading && (
-                <div className="flex justify-center items-center space-x-2">
+                <div className="flex justify-center items-center m-auto">
                     <div>
                         <div
                             style={{ borderTopColor: 'transparent' }}
@@ -27,7 +34,7 @@ const Music = ({ songs = [], isLoading, likeSong, user, loadMore }) => {
                     </div>
                 ))}
             </div>
-            {songs.length > 0 && (
+            {songs.length > 0 && canLoadMore && (
                 <div className="mb-16">
                     <button
                         onClick={() => loadMore()}

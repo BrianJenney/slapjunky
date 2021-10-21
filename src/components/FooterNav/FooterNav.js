@@ -11,14 +11,15 @@ const FooterNav = () => {
 
     const isHomePage = ['/', '/upload'].includes(location?.pathname);
 
-    const isArtist = user?.userType === 'artist';
+    const isAdmin = user?.userType === 'admin';
+    const isSignedIn = user?.userType;
 
     return (
         <div className="flex-col w-full justify-center fixed bottom-2">
             {!isHomePage && <SongPlayer />}
             <nav className="w-11/12 border bg-white flex overflow-x-auto py-4 rounded-lg mx-auto">
                 <p
-                    onClick={() => history.push('/')}
+                    onClick={() => history.push(isSignedIn ? '/discover' : '/')}
                     className="flex flex-col flex-grow items-center justify-center
 		overflow-hidden whitespace-no-wrap text-sm transition-colors duration-100
 		ease-in-out focus:text-orange-500 cursor-pointer"
@@ -39,28 +40,6 @@ const FooterNav = () => {
                     </svg>
 
                     <span className="hidden text-sm capitalize">Home</span>
-                </p>
-
-                <p
-                    onClick={() => history.push('/discover')}
-                    className="flex flex-col flex-grow items-center justify-center
-    overflow-hidden whitespace-no-wrap text-sm transition-colors duration-100
-    ease-in-out text-orange-500 cursor-pointer"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
-                    </svg>
                 </p>
 
                 <p
@@ -109,7 +88,7 @@ ease-in-out focus:text-orange-500 cursor-pointer"
                     <span className="hidden text-sm capitalize">Account</span>
                 </p>
 
-                {isArtist && (
+                {isAdmin && (
                     <p
                         onClick={() => history.push('/upload')}
                         className="flex flex-col flex-grow items-center justify-center

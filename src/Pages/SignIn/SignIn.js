@@ -10,7 +10,7 @@ const SignIn = ({ signIn, signInError, updateUserInfo, isLoading }) => {
                 <div className="container xl:px-32 px-5 py-36 mx-auto flex flex-wrap items-center">
                     <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
                         <h1 className="title-font font-bold lg:text-7xl text-6xl text-white text-center md:text-left ">
-                            playground
+                            3AM
                         </h1>
                     </div>
                     <div className="lg:w-2/6 md:w-1/2 bg-white shadow-lg rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">

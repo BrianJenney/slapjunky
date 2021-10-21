@@ -74,7 +74,7 @@ const GeoMap = () => {
                     return projection([d.lng, d.lat])[1];
                 })
                 .attr('r', (d) => {
-                    return Math.sqrt(d.count) * 4;
+                    return Math.sqrt(d.count) * 10;
                 })
                 .style('fill', 'rgb(217,91,67)')
                 .style('opacity', 0.85)

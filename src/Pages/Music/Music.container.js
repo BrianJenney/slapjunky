@@ -102,6 +102,11 @@ const MusicContainer = ({ user }) => {
         }
     };
 
+    // we return songs in chunks of 10 at a time
+    // only show button if we can infer more songs are there
+
+    const moreSongsAvailable = songs.length % 10 === 0;
+
     return (
         <div>
             {isSongPage ? (
@@ -121,6 +126,7 @@ const MusicContainer = ({ user }) => {
                     likeSong={addOrRemoveLike}
                     isLoading={isLoading}
                     songs={songs}
+                    canLoadMore={moreSongsAvailable}
                     loadMore={loadMore}
                 />
             )}
