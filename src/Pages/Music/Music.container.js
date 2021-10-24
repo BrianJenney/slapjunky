@@ -66,7 +66,9 @@ const MusicContainer = ({ user }) => {
             const newSong = songData?.data?.song;
 
             setSongs(
-                songs.map((song) => (song._id === newSong._id ? newSong : song))
+                songs.map((song) =>
+                    song._id === newSong._id ? { ...song, ...newSong } : song
+                )
             );
         };
         likeSong({
@@ -104,7 +106,6 @@ const MusicContainer = ({ user }) => {
 
     // we return songs in chunks of 10 at a time
     // only show button if we can infer more songs are there
-
     const moreSongsAvailable = songs.length % 10 === 0;
 
     return (

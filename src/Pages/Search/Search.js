@@ -8,14 +8,17 @@ const Search = ({ setQuery, searchResults }) => {
         {
             path: 'rap',
             name: 'rap',
+            bgCover: 'rap-pattern',
         },
         {
             path: 'trap',
             name: 'trap',
+            bgCover: 'trap-pattern',
         },
         {
             path: 'randb',
             name: 'R & B',
+            bgCover: 'randb-pattern',
         },
     ];
 
@@ -86,16 +89,18 @@ const Search = ({ setQuery, searchResults }) => {
                     <div className="flex flex-col m-auto p-auto">
                         <div className="flex overflow-x-scroll pb-10 hide-scroll-bar no-scrollbar mt-10">
                             <div className="flex flex-nowrap m-auto">
-                                {genres.map(({ name, path }) => (
+                                {genres.map(({ name, path, bgCover }) => (
                                     <div
                                         key={path}
                                         onClick={() =>
                                             history.push(`/music?genre=${path}`)
                                         }
-                                        className="inline-block px-3 cursor-pointer"
+                                        className="inline-block px-3 cursor-pointer "
                                     >
-                                        <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out flex items-center justify-center">
-                                            <h1 className="text-green-700 capitalize text-4xl">
+                                        <div
+                                            className={`w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-${bgCover} bg-cover flex items-center justify-center`}
+                                        >
+                                            <h1 className="text-white capitalize text-4xl">
                                                 {name}
                                             </h1>
                                         </div>
