@@ -5,9 +5,9 @@ const SignIn = ({ signIn, signInError, updateUserInfo, isLoading }) => {
     const history = useHistory();
 
     return (
-        <div>
+        <div className="bg-hero-pattern bg-no-repeat bg-cover h-screen">
             <div>
-                <div className="container px-5 py-36 px-32 sm:px-10 mx-auto flex flex-wrap items-center justify-between bg-hero-pattern bg-no-repeat bg-cover">
+                <div className="container px-5 py-36 px-32 sm:px-10 mx-auto flex flex-wrap items-center justify-between">
                     <div className="md:w-3/5 sm:w-1/2 md:pr-16 lg:pr-0 pr-0">
                         <h1 className="title-font font-bold lg:text-7xl text-6xl text-white text-center md:text-left ">
                             3AM
