@@ -23,7 +23,7 @@ const Search = ({ setQuery, searchResults }) => {
     ];
 
     return (
-        <div className="bg-gray-900 sm:py-10">
+        <div className="bg-black sm:py-10">
             <div className="w-8/12 relative text-gray-600 focus-within:text-gray-400 py-5 mx-auto">
                 <span className="absolute inset-y-0 left-0 flex items-center pl-2">
                     <button

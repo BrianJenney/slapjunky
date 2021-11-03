@@ -23,7 +23,7 @@ const ForgotPasswordContainer = () => {
         }
     };
     return (
-        <div className="bg-gray-900 min-h-screen">
+        <div className="bg-black min-h-screen">
             <ForgotPassword
                 setEmail={setEmail}
                 submit={submit}

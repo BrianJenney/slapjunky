@@ -7,7 +7,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 ReactDOM.render(
     <React.StrictMode>
-        <div className="bg-gray-900 h-screen">
+        <div className="bg-black h-screen">
             <App />
         </div>
     </React.StrictMode>,

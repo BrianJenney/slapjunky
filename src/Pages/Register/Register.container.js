@@ -47,7 +47,7 @@ const RegisterContainer = () => {
     };
 
     return (
-        <div className="bg-gray-900 overflow-scroll">
+        <div className="bg-black overflow-scroll">
             <Register
                 currentUser={user}
                 formType={formType}

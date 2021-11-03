@@ -10,7 +10,7 @@ const Music = ({
     canLoadMore,
 }) => {
     return (
-        <div className="bg-gray-900 overflow-hidden flex flex-col items-center content-center h-screen relative">
+        <div className="bg-black overflow-hidden flex flex-col items-center content-center h-screen relative">
             {isLoading && (
                 <div className="flex justify-center items-center m-auto">
                     <div>

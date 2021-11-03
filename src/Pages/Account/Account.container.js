@@ -65,7 +65,7 @@ const AccountContainer = () => {
     };
 
     return (
-        <div className="bg-gray-900 overflow-scroll relative">
+        <div className="bg-black overflow-scroll relative">
             <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
                 <input
                     type="checkbox"

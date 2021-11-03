@@ -14,19 +14,49 @@ const Song = ({ likeSong, song, user, artist }) => {
                 onClick={() => setCurrentSong(song)}
                 className="flex items-center space-x-4 justify-between cursor-pointer"
             >
-                <img
-                    style={{
-                        width: '100px',
-                        height: '100px',
-                        objectFit: 'cover',
-                    }}
-                    height="100px"
-                    width="100px"
-                    alt="song art"
-                    src={formatUrl(song?.songCoverUrl)}
-                />
+                <div className="relative">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-100px w-100px absolute"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="#ffff"
+                    >
+                        <path
+                            opacity={0.3}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1}
+                            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                        />
+                        <path
+                            opacity={0.3}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1}
+                            d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                    </svg>
+                    <img
+                        style={{
+                            width: '100px',
+                            height: '100px',
+                            objectFit: 'cover',
+                            borderRadius: '50%',
+                        }}
+                        height="100px"
+                        width="100px"
+                        alt="artist avatar"
+                        src={formatUrl(artist?.avatar)}
+                    />
+                </div>
             </div>
+
             <div>
+                <p className="text-white">{artist.city}</p>
+                <p className="text-white">{artist.state}</p>
+            </div>
+            <div className="text-center">
                 <p
                     onClick={() => history.push(`/artist/${artist?._id}`)}
                     className="text-white uppercase cursor-pointer"

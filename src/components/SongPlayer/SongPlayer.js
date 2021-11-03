@@ -62,7 +62,7 @@ const SongPlayer = () => {
     if (!song) return <></>;
 
     return (
-        <div className="w-full mx-auto bg-red-300 rounded-lg px-8 sm:px-2">
+        <div className="w-full mx-auto bg-gray-900 rounded-lg px-8 sm:px-2">
             <div className="flex justify-end">
                 <p
                     onClick={() => setCurrentSong(null)}

@@ -22,7 +22,7 @@ const Artist = ({
         return `https://${newUrl}`;
     };
     return (
-        <div className="bg-gray-900 overflow-hidden h-screen w-10/12 m-auto overflow-scroll no-scrollbar">
+        <div className="bg-black overflow-hidden h-screen w-10/12 m-auto overflow-scroll no-scrollbar">
             <div>
                 <div className="flex md:flex-col items-center lg:flex-row mt-5">
                     <img

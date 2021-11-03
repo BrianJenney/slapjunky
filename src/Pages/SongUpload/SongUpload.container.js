@@ -97,7 +97,7 @@ const SongUploadContainer = ({ user }) => {
     );
 
     return (
-        <div className="h-screen bg-gray-900 items-center justify-center ">
+        <div className="h-screen bg-black items-center justify-center ">
             {successMessage ? (
                 <div className="flex flex-col justify-center items-center">
                     <h1 className="text-white font-bold md:text-2xl text-xl mt-20">
