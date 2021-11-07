@@ -22,7 +22,7 @@ const Music = ({
                     <p className="text-white text-2xl">LOADING SLAPS</p>
                 </div>
             )}
-            <div className="mt-16 mb-16 w-9/12 overflow-scroll divide-y-2 divide-purple-300 divide-solid no-scrollbar">
+            <div className="mt-16 mb-16 w-9/12 md:w-11/12 overflow-scroll divide-y-2 divide-purple-300 divide-solid no-scrollbar">
                 {songs.map((song, i) => (
                     <div key={`${i}_${song.url}`} className="pb-4 py-4">
                         <Song

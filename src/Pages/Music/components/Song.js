@@ -39,6 +39,7 @@ const Song = ({ likeSong, song, user, artist }) => {
                     </svg>
                     <img
                         style={{
+                            maxWidth: '100px',
                             width: '100px',
                             height: '100px',
                             objectFit: 'cover',
@@ -52,14 +53,14 @@ const Song = ({ likeSong, song, user, artist }) => {
                 </div>
             </div>
 
-            <div>
+            <div className="text-center">
                 <p className="text-white">{artist.city}</p>
                 <p className="text-white">{artist.state}</p>
             </div>
             <div className="text-center">
                 <p
+                    className="overflow-ellipsis text-white uppercase cursor-pointer md:text-sm"
                     onClick={() => history.push(`/artist/${artist?._id}`)}
-                    className="text-white uppercase cursor-pointer"
                 >
                     {song.artistName}
                 </p>
@@ -70,7 +71,7 @@ const Song = ({ likeSong, song, user, artist }) => {
                     {song.title}
                 </p>
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-end relative">
                 <svg
                     onClick={() =>
                         likeSong({
@@ -80,15 +81,15 @@ const Song = ({ likeSong, song, user, artist }) => {
                         })
                     }
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
+                    className="h-6 w-6 md:absolute"
                     fill={isLiked ? 'red' : 'none'}
                     viewBox="0 0 24 24"
                     stroke="#ffff"
                 >
                     <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                     />
                 </svg>

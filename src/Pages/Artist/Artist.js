@@ -21,8 +21,21 @@ const Artist = ({
 
         return `https://${newUrl}`;
     };
+
+    if (!artist?.avatar) {
+        return (
+            <div className="flex justify-center items-center m-auto">
+                <div>
+                    <div
+                        style={{ borderTopColor: 'transparent' }}
+                        className="w-16 h-16 border-4 border-blue-400 border-double rounded-full animate-spin"
+                    ></div>
+                </div>
+            </div>
+        );
+    }
     return (
-        <div className="bg-black overflow-hidden h-screen w-10/12 m-auto overflow-scroll no-scrollbar">
+        <div className="bg-black overflow-hidden h-screen w-11/12 m-auto overflow-y-scroll no-scrollbar">
             <div>
                 <div className="flex md:flex-col items-center lg:flex-row mt-5">
                     <img
@@ -35,7 +48,7 @@ const Artist = ({
                         src={ikQualityFormat(artist?.avatar, 40, 250)}
                         alt={artist?.artistName}
                     />
-                    <h1 className="text-white text-6xl sm:ml-5 w-full md:break-words">
+                    <h1 className="text-white text-6xl ml-5 w-full md:break-words">
                         {artist?.artistName}
                     </h1>
                 </div>
@@ -48,8 +61,8 @@ const Artist = ({
                 {artist?.socialMedia
                     .filter((link) => link.length)
                     .map((link) => (
-                        <div key={link}>
-                            <SocialIcon url={link} />
+                        <div key={link} className="">
+                            <SocialIcon width="50px" height="50px" url={link} />
                             <a
                                 rel="noreferrer"
                                 target="_blank"
@@ -75,7 +88,7 @@ const Artist = ({
                 ))}
             </div>
 
-            <div className="flex h-250 bg-gray-800 justify-center items-center md:p-10 mb-16">
+            <div className="flex h-250 bg-gray-800 justify-center items-center md:p-0 mb-16">
                 <div className="w-full bg-white p-2 pt-4 rounded">
                     <div className="flex ml-3">
                         <div className="mr-3">

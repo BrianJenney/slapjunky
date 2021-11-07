@@ -12,6 +12,7 @@ export const getBaseUrl = () => {
         stage: STAGE_URL,
     };
     const env = process.env.REACT_APP_ENV;
+
     return urlsByEnv[env] || 'http://localhost:5000/api/';
 };
 

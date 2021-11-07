@@ -18,7 +18,7 @@ const UserForm = ({
 }) => {
     return (
         <div className="bg-grey-light min-h-screen">
-            <div className="container md:w-10/12 mx-auto flex-1 flex flex-col items-center justify-center px-2">
+            <div className="container md:w-11/12 mx-auto flex-1 flex flex-col items-center justify-center px-2">
                 <div className="text-gray-700 bg-white px-6 py-8 rounded shadow-md text-black w-full mb-10 mt-5">
                     {formType !== 'update' && (
                         <>
@@ -206,9 +206,15 @@ const UserForm = ({
 
                     <div className="py-4">
                         <button
+                            onClick={() => window.history.back()}
+                            className="bg-red-400 w-1/2 text-center py-3 rounded bg-red text-white hover:bg-green-dark focus:outline-none my-1"
+                        >
+                            Cancel
+                        </button>
+                        <button
                             onClick={() => registerUser()}
                             type="submit"
-                            className="bg-green-400 w-full text-center py-3 rounded bg-green text-white hover:bg-green-dark focus:outline-none my-1"
+                            className="bg-green-400 w-1/2 text-center py-3 rounded bg-green text-white hover:bg-green-dark focus:outline-none my-1"
                         >
                             {formType === 'update'
                                 ? 'Update Account'
