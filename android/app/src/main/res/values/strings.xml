@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">3AM</string>
-    <string name="title_activity_main">3AM</string>
-    <string name="package_name">com.3AM.app</string>
-    <string name="custom_url_scheme">com.3AM.app</string>
+    <string name="app_name">F1rst</string>
+    <string name="title_activity_main">F1rst</string>
+    <string name="package_name">com.F1rst.app</string>
+    <string name="custom_url_scheme">com.F1rst.app</string>
 </resources>

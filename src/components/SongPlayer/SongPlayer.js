@@ -43,7 +43,7 @@ const SongPlayer = () => {
             try {
                 await navigator.share({
                     title: 'Slap Junky Share',
-                    text: `Check out ${song?.title} by ${song?.artistName} on 3AM`,
+                    text: `Check out ${song?.title} by ${song?.artistName} on F1rst`,
                     url: window.location,
                 });
             } catch (error) {
