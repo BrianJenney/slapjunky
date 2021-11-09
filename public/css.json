@@ -1,0 +1,13 @@
+{
+    "rules": [
+        {
+            "path": "/music",
+            "target": {
+                "element": "img:nth-child(2)",
+                "styles": ["width: 20px"],
+                "minWidth": null,
+                "maxWidth": null
+            }
+        }
+    ]
+}
