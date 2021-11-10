@@ -1,16 +1,19 @@
 (function () {
     window.onload = () => {
         window
-            .fetch('./css.json')
+            .fetch(
+                'http://localhost:5000/api/styles/getconfig?spaceid=123ABC&isPreview=false'
+            )
             .then((response) => response.json())
             .then((data) => {
                 let myStringOfstyles = '';
 
-                if (Array.isArray(data.rules) && data.rules.length) {
-                    data.rules.forEach((rule) => {
-                        myStringOfstyles += `${
-                            rule.target.element
-                        } { ${rule.target.styles
+                if (
+                    Array.isArray(data.styleConfig.styles) &&
+                    data.styleConfig.styles.length
+                ) {
+                    data.styleConfig.styles.forEach((rule) => {
+                        myStringOfstyles += `${rule.element} { ${rule.styles
                             .map((styleStr) => {
                                 return `${styleStr} !important; `;
                             })
