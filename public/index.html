@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#000000" />
         <meta name="description" content="Music for slap addicts" />
-        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico />
         <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -26,7 +26,13 @@
     <body style="min-height: 100%">
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
-
+        <!-- <script src="https://cdn.jsdelivr.net/gh/BrianJenney/slapjunky@stage/public/css.js"></script> -->
+        <!-- <script src="%PUBLIC_URL%/css.js"></script> -->
+        <script>
+            if (window.pspx) {
+                window.pspx.init({ spaceid: '123ABC', isPreview: true });
+            }
+        </script>
         <!-- <script>
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function () {
