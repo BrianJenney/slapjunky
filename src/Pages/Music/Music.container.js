@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { SongContext } from '../../contexts/SongContext';
 import { apiClient } from '../../utils/apiClient';
 import { useLocation } from 'react-router-dom';
 import Music from './Music';
@@ -14,6 +15,7 @@ const MusicContainer = ({ user }) => {
     const [page, setPage] = useState(1);
     const location = useLocation();
     const searchParams = new URLSearchParams(location?.search);
+    const { setAllSongs } = useContext(SongContext);
 
     const isSongPage = location.pathname.includes('song');
 
@@ -43,10 +45,11 @@ const MusicContainer = ({ user }) => {
                 page,
             });
 
-            const songData = data?.data;
-            setSongs((prev) =>
-                isSongPage ? [...songData] : [...prev, ...songData]
-            );
+            const songData = isSongPage
+                ? [...data?.data]
+                : [...songs, ...data?.data];
+            setAllSongs(songData);
+            setSongs(songData);
             setSongComments(data?.comments);
         } catch (ex) {
             throw ex;

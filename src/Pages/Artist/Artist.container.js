@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { SongContext } from '../../contexts/SongContext';
 import { useParams } from 'react-router-dom';
 import Artist from './Artist';
 import { apiClient } from '../../utils/apiClient';
@@ -8,6 +9,7 @@ const ArtistContainer = ({ user }) => {
     const { id } = useParams();
     const [artist, setArtist] = useState(null);
     const [artistSongs, setArtistSongs] = useState([]);
+    const { setAllSongs } = useContext(SongContext);
 
     const addOrRemoveLike = ({ userId, songId, removeLike }) => {
         const callback = (songData) => {
@@ -36,6 +38,7 @@ const ArtistContainer = ({ user }) => {
 
                 setArtist(res?.data?.data?.[0]);
                 setArtistSongs(res?.data?.data?.[0].songs ?? []);
+                setAllSongs(res?.data?.data?.[0].songs ?? []);
             } catch (e) {
                 console.error(e);
             }
