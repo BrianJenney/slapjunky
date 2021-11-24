@@ -10,6 +10,7 @@ import isEmpty from 'lodash/isEmpty';
 const MusicContainer = ({ user }) => {
     const [comment, setComment] = useState('');
     const [songs, setSongs] = useState([]);
+    const [isSongPage, setIsSongPage] = useState(false);
     const [songComments, setSongComments] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [page, setPage] = useState(1);
@@ -17,7 +18,9 @@ const MusicContainer = ({ user }) => {
     const searchParams = new URLSearchParams(location?.search);
     const { setAllSongs } = useContext(SongContext);
 
-    const isSongPage = location.pathname.includes('song');
+    useEffect(() => {
+        setIsSongPage(location.pathname.includes('song'));
+    }, [location.pathname]);
 
     const searchByMap = {
         genre: 'genre',
