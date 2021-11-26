@@ -14,7 +14,7 @@ const ForgotPassword = ({
                     Check your email for a link to reset your password!
                 </p>
             ) : (
-                <form className="bg-white w-7/12 mx-auto shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <form className="bg-white w-7/12 md:w-11/12 mx-auto shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
