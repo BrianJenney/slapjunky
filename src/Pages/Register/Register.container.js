@@ -48,15 +48,17 @@ const RegisterContainer = () => {
 
     return (
         <div className="bg-black overflow-scroll">
-            <Register
-                currentUser={user}
-                formType={formType}
-                setFormType={changeFormType}
-                registerUser={registerUser}
-                updateUser={updateUser}
-                imgPreview={imgPreview}
-                removeImg={removeImg}
-            />
+            <div className="w-75 md:w-100">
+                <Register
+                    currentUser={user}
+                    formType={formType}
+                    setFormType={changeFormType}
+                    registerUser={registerUser}
+                    updateUser={updateUser}
+                    imgPreview={imgPreview}
+                    removeImg={removeImg}
+                />
+            </div>
         </div>
     );
 };

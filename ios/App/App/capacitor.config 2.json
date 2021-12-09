@@ -1,0 +1,6 @@
+{
+	"appId": "com.3AM.app",
+	"appName": "3AM",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}

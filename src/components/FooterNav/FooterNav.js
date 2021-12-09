@@ -14,6 +14,10 @@ const FooterNav = () => {
     const isAdmin = user?.userType === 'admin';
     const isSignedIn = user?.userType;
 
+    if (isHomePage) {
+        return null;
+    }
+
     return (
         <div className="flex-col w-full justify-center fixed bottom-2">
             {!isHomePage && <SongPlayer />}
