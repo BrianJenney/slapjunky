@@ -95,10 +95,12 @@ const SignIn = ({ signIn, signInError, updateUserInfo, isLoading }) => {
             <footer className="bg-gray-900">
                 <div className="container flex flex-wrap items-center justify-around px-4 py-8 mx-auto justify-between">
                     <div>
-                        <p className="text-2xl text-white">Contact Us</p>
+                        <p className="text-2xl md:text-1xl  text-white">
+                            Contact Us at neumusic@fastmail.com
+                        </p>
                     </div>
                     <div>
-                        <SocialIcon url="https://instagram.com" />
+                        <SocialIcon url="https://instagram.com/hearitfirstmusic" />
                     </div>
                 </div>
             </footer>
